@@ -1,7 +1,10 @@
 package com.example.tabelogpage.controller;
 
-import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,12 +25,12 @@ public class AdminStoreController {
     }
     
     @GetMapping 
-    public String index(Model model) {
+    public String index(Model model, @PageableDefault(page = 0, size = 10, sort = "id", direction = Direction.ASC) Pageable pageable){
         
-        List<Store> stores = storeRepository.findAll();
+    	 Page<Store> storePage = storeRepository.findAll(pageable);
         
    
-        model.addAttribute("stores", stores);
+        model.addAttribute("storePage", storePage);
         
         // 表示するテンプレートのパスを返す
         // (例: src/main/resources/templates/admin/stores/index.html)
