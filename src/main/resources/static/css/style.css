@@ -39,7 +39,7 @@ footer {
 }
 
 .tabelogpage-logo {
- height: 200px;  
+ height: 100px;  
  
 }
 
@@ -65,6 +65,34 @@ footer {
   border-color: #5196a6 !important;
 }
 
+.tabelogpage-pre-wrap {
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.tabelog-label-col {
+  width: 100px;
+  text-align: left;
+  font-weight: bold;
+}
+
+.detail-card {
+  max-width: 540px;
+  margin: 0 auto 2rem auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.04);
+  padding: 20px 24px;
+}
+
+.detail-image {
+  width: 100%;       /* 親に対してMaxに */
+  height: auto;      /* アスペクト比キープ */
+  border-radius: 12px;
+  object-fit: cover; /* 画像のトリミング対応 */
+  display: block;
+}
 @media screen and (min-width: 1400px) {
  .tabelogpage-container {
    max-width: 1200px;

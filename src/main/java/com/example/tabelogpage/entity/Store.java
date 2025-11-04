@@ -1,7 +1,7 @@
 package com.example.tabelogpage.entity;
 
-import java.sql.Time;
 import java.sql.Timestamp;
+import java.time.LocalTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -39,10 +39,10 @@ public class Store {
     private Integer priceMax; 
 
     @Column(name = "opening_time")
-    private Time openingTime; //
+    private LocalTime openingTime; //
 
     @Column(name = "closing_time")
-    private Time closingTime; 
+    private LocalTime closingTime; 
 
     @Column(name = "postal_code")
     private String postalCode; 

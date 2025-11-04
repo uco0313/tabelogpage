@@ -12,7 +12,7 @@
        
        <link th:href="@{/css/style.css}" rel="stylesheet" >
        
-       <title>店舗情報</title>       
+       <title>店舗一覧</title>       
    </head>
    <body>
        <div class="tabelogpage-wrapper">
@@ -29,9 +29,15 @@
                    <div class="row justify-content-center">
                        <div class="col-xxl-9 col-xl-10 col-lg-11">
                            
-                           <h1 class="mb-4 text-center">店舗情報</h1>   
+                           <h1 class="mb-4 text-center">店舗一覧</h1>   
                            
-                           <div class="d-flex justify-content-end">                                
+                            <div class="d-flex justify-content-between align-items-end flex-wrap">
+                                <form method="get" th:action="@{/admin/stores}" class="mb-3">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="keyword" th:value="${keyword}" placeholder="店舗名">
+                                        <button type="submit" class="btn text-white shadow-sm tabelogpage-btn">検索</button> 
+                                    </div>               
+                                </form>                                  
                                <a href="#" class="btn text-white shadow-sm mb-3 tabelogpage-btn">登録</a>
                            </div>                                                          
                            
@@ -53,7 +59,7 @@
 								    <td th:text="${store.getPostalCode()}"></td>
 								    <td th:text="${store.getAddress()}"></td>
 								    <td th:text="${store.getPhoneNumber()}"></td>
-								    <td><a href="#">詳細</a></td>                                                                                
+								    <td><a th:href="@{/admin/stores/__${store.getId()}__}">詳細</a></td>                                                                                 
 </tr>                               
                                </tbody>
                            </table>    
@@ -65,24 +71,20 @@
 						            
 						            <li class="page-item">
 						                <span th:if="${storePage.isFirst()}" class="page-link disabled">前</span>
-						                <a th:unless="${storePage.isFirst()}" 
-						                   th:href="@{/admin/stores(page = ${storePage.getNumber() - 1}, size = ${storePage.getSize()}, sort = ${storePage.getSort().toString().replace(': ', ',')})}" 
-						                   class="page-link tabelogpage-link">前</a>
+						                <a th:unless="${storePage.isFirst()}" th:href="@{/admin/stores(page = ${storePage.getNumber() - 1}, keyword = ${keyword})}" class="page-link tabelogpage-page-link">前</a>
 						            </li>
 						            
 						            <li th:each="i : ${#numbers.sequence(0, storePage.getTotalPages() - 1)}" class="page-item">
 						                <span th:if="${i == storePage.getNumber()}" class="page-link active tabelogpage-active" th:text="${i + 1}"></span>
-						                <a th:unless="${i == storePage.getNumber()}" 
-						                   th:href="@{/admin/stores(page = ${i}, size = ${storePage.getSize()}, sort = ${storePage.getSort().toString().replace(': ', ',')})}" 
-						                   class="page-link tabelogpage-link" th:text="${i + 1}"></a>
-						            </li>
+						                 <a th:unless="${i == storePage.getNumber()}" th:href="@{/admin/stores(page = ${i}, keyword = ${keyword})}" class="page-link tabelog-page-link" th:text="${i + 1}"></a>
+                                    </li>
+
 						            
 						            <li class="page-item">                        
-						                <span th:if="${storePage.isLast()}" class="page-link disabled">次</span>
-						                <a th:unless="${storePage.isLast()}" 
-						                   th:href="@{/admin/stores(page = ${storePage.getNumber() + 1}, size = ${storePage.getSize()}, sort = ${storePage.getSort().toString().replace(': ', ',')})}" 
-						                   class="page-link tabelogpage-link">次</a>
-						            </li>
+						                <span th:if="${storePage.isLast()}" class="page-link disabled">次</span>  
+						             	<a th:unless="${storePage.isLast()}" th:href="@{/admin/stores(page = ${storePage.getNumber() + 1}, keyword = ${keyword})}" class="page-link tabelog-page-link">次</a>
+                                    </li>
+
 						        </ul>
 						    </nav> 
 						</div>
@@ -94,7 +96,7 @@
            
            <footer>
                <div class="d-flex justify-content-center align-items-center h-100">
-                   <p class="text-center text-muted small mb-0">&copy; NAGAYAMESHI All rights reserved.</p>      
+                   <p class="text-center text-muted small mb-0">&copy; tabelogpage All rights reserved.</p>      
                </div>                 
            </footer>
        </div>    
