@@ -1,11 +1,12 @@
 -- #################################
 -- 1. categories テーブル
 -- #################################
-INSERT IGNORE INTO categories (id, name) VALUES (1, '和食');
-INSERT IGNORE INTO categories (id, name) VALUES (2, 'イタリアン');
-INSERT IGNORE INTO categories (id, name) VALUES (3, '中華');
-INSERT IGNORE INTO categories (id, name) VALUES (4, 'カフェ');
-INSERT IGNORE INTO categories (id, name) VALUES (5, 'その他');
+INSERT IGNORE INTO categories (id, name) VALUES (1, '和食 Japanese food');
+INSERT IGNORE INTO categories (id, name) VALUES (2, 'イタリアン Italian food');
+INSERT IGNORE INTO categories (id, name) VALUES (3, '中華 Chinese food');
+INSERT IGNORE INTO categories (id, name) VALUES (4, 'カフェ Cafe');
+INSERT IGNORE INTO categories (id, name) VALUES (5, 'エスニック Ethnic food');
+INSERT IGNORE INTO categories (id, name) VALUES (6, 'その他 Others');
 
 -- #################################
 -- 2. members テーブル
@@ -27,10 +28,10 @@ VALUES (1, 'admin@example.com', '$2a$10$AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 -- 4. companies テーブル
 -- #################################
 INSERT IGNORE INTO companies (id, company_name, representative_name, establishment_date, postal_code, address, business_details)
-VALUES (1, '食ログ株式会社', '代表取締役 鈴木', '2010-04-01', '150-0043', '東京都渋谷区道玄坂1-1-1', '飲食店の情報提供サービス事業');
+VALUES (1, 'tabelog株式会社', '代表取締役 北村　美桜', '2010-04-01', '150-0043', '東京都渋谷区道玄坂1-1-1', '飲食店の情報提供サービス事業');
 
 -- #################################
--- 5. stores テーブル (合計50件)
+-- 5. stores テーブル 
 -- #################################
 INSERT IGNORE INTO stores (id, category_id, store_name, image_path, description, price_min, price_max, opening_time, closing_time, postal_code, address, phone_number, regular_holiday)
 VALUES (1, 1, '銀座 匠の寿司', 'store001.jpg', '厳選された旬の魚を提供する高級寿司店。', 10000, 20000, '17:00:00', '22:00:00', '450-0001', '愛知県名古屋市千種区銀座1-2-3', '052-1234-5678', '月曜日');

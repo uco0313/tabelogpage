@@ -8,6 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -18,10 +20,13 @@ public class Store {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Integer id; // 店舗ID (主キー)
+    private Integer id; 
 
-    @Column(name = "category_id")
-    private Integer categoryId; // FK: カテゴリID
+  
+    @ManyToOne 
+    @JoinColumn(name = "category_id") // 外部キー（storesテーブルのカラム名）を指定
+    private Category category; 
+
 
     @Column(name = "store_name")
     private String storeName; 
@@ -30,7 +35,7 @@ public class Store {
     private String imagePath; 
 
     @Column(name = "description")
-    private String description; //  (TEXT -> String)
+    private String description; // (TEXT -> String)
 
     @Column(name = "price_min")
     private Integer priceMin; 

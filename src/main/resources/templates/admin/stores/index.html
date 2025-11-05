@@ -1,28 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org">
    <head>
-       <meta charset="UTF-8">
-       <meta name="viewport" content="width=device-width, initial-scale=1">    
-            
-       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-       
-       <link rel="preconnect" href="https://fonts.googleapis.com">
-       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-       <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap" rel="stylesheet">   
-       
-       <link th:href="@{/css/style.css}" rel="stylesheet" >
-       
+	   <div th:replace="~{fragment :: meta}"></div>   
+           
+     	<div th:replace="~{fragment :: styles}"></div> 
+      
        <title>店舗一覧</title>       
    </head>
    <body>
        <div class="tabelogpage-wrapper">
-           <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm tabelogpage-navbar">
-               <div class="container tabelogpage-container">
-                   <a class="navbar-brand" th:href="@{/}">                        
-                       <img class="tabelogpage-logo me-1" th:src="@{/images/logo.png}" alt="tabelogpage">                        
-                   </a>                                                                    
-               </div>
-           </nav>
+       <div th:replace="~{fragment :: header}"></div>
            
            <main>
                <div class="container pt-4 pb-5 tabelogpage-container">
@@ -38,8 +25,12 @@
                                         <button type="submit" class="btn text-white shadow-sm tabelogpage-btn">検索</button> 
                                     </div>               
                                 </form>                                  
-                               <a href="#" class="btn text-white shadow-sm mb-3 tabelogpage-btn">登録</a>
+                                <a th:href="@{/admin/stores/register}" class="btn text-white shadow-sm mb-3 tabelogpage-btn">登録</a>   
                            </div>                                                          
+                           
+                           <div th:if="${successMessage}" class="alert alert-info">
+                                <span th:text="${successMessage}"></span>
+                            </div>         
                            
                            <table class="table">
                                <thead>
@@ -94,13 +85,9 @@
                </div>              
            </main>
            
-           <footer>
-               <div class="d-flex justify-content-center align-items-center h-100">
-                   <p class="text-center text-muted small mb-0">&copy; tabelogpage All rights reserved.</p>      
-               </div>                 
-           </footer>
+          <div th:replace="~{fragment :: footer}"></div>
        </div>    
        
-       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>        
-   </body>
+        <div th:replace="~{fragment :: scripts}"></div>   
+        </body>
 </html>
