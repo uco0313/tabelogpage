@@ -93,6 +93,23 @@ footer {
   object-fit: cover; /* 画像のトリミング対応 */
   display: block;
 }
+
+.tabelogpage-link-danger {
+    color: #f2594b;
+}
+
+.tabelogpage-link-danger:hover {
+    color: #a63c3c;
+}
+
+.tabelogpage-btn-danger {
+    background-color: #f2594b !important;
+    transition: 0.1s;
+}
+
+.tabelogpage:hover {
+  opacity: 0.8;   
+}
 @media screen and (min-width: 1400px) {
  .tabelogpage-container {
    max-width: 1200px;

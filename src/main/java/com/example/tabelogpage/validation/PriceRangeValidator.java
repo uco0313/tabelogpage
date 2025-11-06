@@ -1,13 +1,12 @@
 package com.example.tabelogpage.validation; 
 
-import com.example.tabelogpage.form.StoreRegisterForm;
+import com.example.tabelogpage.form.StoreEditForm;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
 
-public class PriceRangeValidator implements ConstraintValidator<PriceRange, StoreRegisterForm> {
-
+public class PriceRangeValidator implements ConstraintValidator<PriceRange, StoreEditForm> { 
 
     private String message;
     
@@ -18,7 +17,7 @@ public class PriceRangeValidator implements ConstraintValidator<PriceRange, Stor
     }
 
     @Override
-    public boolean isValid(StoreRegisterForm form, ConstraintValidatorContext context) {
+    public boolean isValid(StoreEditForm form, ConstraintValidatorContext context) {
         
         // nullチェック
         if (form.getPriceMin() == null || form.getPriceMax() == null) {
@@ -31,10 +30,10 @@ public class PriceRangeValidator implements ConstraintValidator<PriceRange, Stor
         if (!isValid) {
             // エラーメッセージを表示するフィールドを指定（priceMaxに紐づける）
             context.disableDefaultConstraintViolation(); // デフォルトメッセージを無効化
-       
+        
             context.buildConstraintViolationWithTemplate(this.message) 
                    .addPropertyNode("priceMax") 
-                   .addConstraintViolation();   
+                   .addConstraintViolation();    
         }
 
         return isValid;
