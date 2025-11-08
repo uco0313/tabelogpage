@@ -186,30 +186,112 @@ VALUES (50, 5, 'マイルドカレー こぐま', 'store050.jpg', '子どもか�
 -- #################################
 -- 6. review テーブル
 -- #################################
--- 山田太郎（member_id=1）が銀座 匠の寿司（store_id=1）にレビュー
-INSERT IGNORE INTO review (id, member_id, store_id, star_rating, comment)
-VALUES (1, 1, 1, 5, '人生で一番美味しい寿司でした。大将の腕は本物です。');
 
--- 佐藤花子（member_id=2）がトラットリア・リッコ（store_id=2）にレビュー
+-- ID 1 (佐藤太郎)が銀座 匠の寿司（store_id=1）にレビュー
+INSERT IGNORE INTO review (id, member_id, store_id, star_rating, comment)
+VALUES (1, 1, 1, 5, '人生で一番美味しい寿司でした！');
+
+-- ID 2 (鈴木花子)がトラットリア・リッコ（store_id=2）にレビュー
 INSERT IGNORE INTO review (id, member_id, store_id, star_rating, comment)
 VALUES (2, 2, 2, 4, 'パスタが絶品！ワインも豊富でまた来たいです。');
 
--- 山田太郎（member_id=1）が中華料理 龍鳳（store_id=3）にレビュー
+-- ID 1 (佐藤太郎)が中華料理 龍鳳（store_id=3）にレビュー
 INSERT IGNORE INTO review (id, member_id, store_id, star_rating, comment)
-VALUES (3, 1, 3, 3, '担々麺が美味しかったですが、少し辛すぎました。');
+VALUES (3, 1, 3, 3, '担々麺が美味しかったです。辛党にお勧め！');
+
+-- #################################
+-- 7. roles テーブル
+-- #################################
+INSERT IGNORE INTO roles (id, name) 
+VALUES (1, 'ROLE_GENERAL');
+
+INSERT IGNORE INTO roles (id, name) 
+VALUES (2, 'ROLE_ADMIN');
+
+-- #################################
+-- 8. users テーブル
+-- #################################
+
+-- ID 1: 佐藤 太郎 (ROLE_GENERAL) - レビューデータで使用
+INSERT IGNORE INTO users (id, name, furigana, postal_code, address, phone_number, email, password, role_id, enabled) 
+VALUES (1, '佐藤 太郎', 'サトウ タロウ', '460-0003', '愛知県名古屋市中区錦1-1-1', '090-1234-5678', 'taro.sato@example.com', '$2a$10$2JNjTwZBwo7fprL2X4sv.OEKqxnVtsVQvuXDkI8xVGix.U3W5B7CO', 1, true);
+
+-- ID 2: 鈴木 花子 (ROLE_ADMIN) - レビューと予約データで使用
+INSERT IGNORE INTO users (id, name, furigana, postal_code, address, phone_number, email, password, role_id, enabled) 
+VALUES (2, '鈴木 花子', 'スズキ ハナコ', '450-0002', '愛知県名古屋市中村区名駅4-27-1', '090-1234-5678', 'hanako.suzuki@example.com', '$2a$10$2JNjTwZBwo7fprL2X4sv.OEKqxnVtsVQvuXDkI8xVGix.U3W5B7CO', 2, true);
+
+-- ID 3: 高橋 義勝 (ROLE_GENERAL) - 予約データで使用
+INSERT IGNORE INTO users (id, name, furigana, postal_code, address, phone_number, email, password, role_id, enabled) 
+VALUES (3, '高橋 義勝', 'タカハシ ヨシカツ', '444-0044', '愛知県岡崎市康生通西4-71', '090-1234-5678', 'yoshikatsu.takahashi@example.com', 'password', 1, false);
+
+-- ID 4: 田中 幸美 (ROLE_GENERAL)
+INSERT IGNORE INTO users (id, name, furigana, postal_code, address, phone_number, email, password, role_id, enabled) 
+VALUES (4, '田中 幸美', 'タナカ サチミ', '440-0897', '愛知県豊橋市松葉町1-11', '090-1234-5678', 'sachimi.tanaka@example.com', 'password', 1, false);
+
+-- ID 5: 伊藤 雅 (ROLE_GENERAL)
+INSERT IGNORE INTO users (id, name, furigana, postal_code, address, phone_number, email, password, role_id, enabled) 
+VALUES (5, '伊藤 雅', 'イトウ ミヤビ', '471-0025', '愛知県豊田市西町6-85-1', '090-1234-5678', 'miyabi.ito@example.com', 'password', 1, false);
+
+-- ID 6: 渡辺 正保 (ROLE_GENERAL)
+INSERT IGNORE INTO users (id, name, furigana, postal_code, address, phone_number, email, password, role_id, enabled) 
+VALUES (6, '渡辺 正保', 'ワタナベ マサヤス', '491-0858', '愛知県一宮市栄3-1-2', '090-1234-5678', 'masayasu.watanabe@example.com', 'password', 1, false);
+
+-- ID 7: 山本 真由美 (ROLE_GENERAL)
+INSERT IGNORE INTO users (id, name, furigana, postal_code, address, phone_number, email, password, role_id, enabled) 
+VALUES (7, '山本 真由美', 'ヤマモト マユミ', '485-0041', '愛知県小牧市中央1-1', '090-1234-5678', 'mayumi.yamamoto@example.com', 'password', 1, false);
+
+-- ID 8: 中村 安民 (ROLE_GENERAL)
+INSERT IGNORE INTO users (id, name, furigana, postal_code, address, phone_number, email, password, role_id, enabled) 
+VALUES (8, '中村 安民', 'ナカムラ ヤスタミ', '448-0858', '愛知県刈谷市大手町1-1', '090-1234-5678', 'yasutami.nakamura@example.com', 'password', 1, false);
+
+-- ID 9: 小林 章緒 (ROLE_GENERAL)
+INSERT IGNORE INTO users (id, name, furigana, postal_code, address, phone_number, email, password, role_id, enabled) 
+VALUES (9, '小林 章緒', 'コバヤシ アキオ', '446-0032', '愛知県安城市御幸本町1-1', '090-1234-5678', 'akio.kobayashi@example.com', 'password', 1, false);
+
+-- ID 10: 加藤 祐子 (ROLE_GENERAL)
+INSERT IGNORE INTO users (id, name, furigana, postal_code, address, phone_number, email, password, role_id, enabled) 
+VALUES (10, '加藤 祐子', 'カトウ ユウコ', '470-2200', '愛知県知多郡阿久比町', '090-1234-5678', 'yuko.kato@example.com', 'password', 1, false);
+
+-- ID 11: 吉田 秋美 (ROLE_GENERAL)
+INSERT IGNORE INTO users (id, name, furigana, postal_code, address, phone_number, email, password, role_id, enabled) 
+VALUES (11, '吉田 秋美', 'ヨシダ アキミ', '480-1121', '愛知県長久手市山越901', '090-1234-5678', 'akimi.yoshida@example.com', 'password', 1, false);
+
+-- ID 12: 山田 信平 (ROLE_GENERAL)
+INSERT IGNORE INTO users (id, name, furigana, postal_code, address, phone_number, email, password, role_id, enabled) 
+VALUES (12, '山田 信平', 'ヤマダ シンペイ', '464-0802', '愛知県名古屋市千種区星ヶ丘元町15', '090-1234-5678', 'shinpei.yamada@example.com', 'password', 1, false);
 
 
 -- #################################
--- 7. reservation テーブル
+-- 9. reservation テーブル
 -- #################################
--- 佐藤花子（member_id=2）が銀座 匠の寿司（store_id=1）に予約
+
+-- 予約済みデータ 
 INSERT IGNORE INTO reservation (id, member_id, store_id, reservation_date, number_of_people)
-VALUES (1, 2, 1, '2025-11-15 19:30:00', 2);
+VALUES (1, 1, 1, '2025-11-15', 2);
 
--- 田中一郎（member_id=3）がトラットリア・リッコ（store_id=2）に予約
 INSERT IGNORE INTO reservation (id, member_id, store_id, reservation_date, number_of_people)
-VALUES (2, 3, 2, '2025-12-24 20:00:00', 4);
+VALUES (2, 2, 2, '2025-12-24', 4);
 
+INSERT IGNORE INTO reservation (id, member_id, store_id, reservation_date, number_of_people) 
+VALUES (3, 3, 3, '2025-11-16', 3);
 
+INSERT IGNORE INTO reservation (id, member_id, store_id, reservation_date, number_of_people) 
+VALUES (4, 4, 4, '2025-12-25', 5);
 
+INSERT IGNORE INTO reservation (id, member_id, store_id, reservation_date, number_of_people) 
+VALUES (5, 5, 5, '2025-11-17', 2);
 
+INSERT IGNORE INTO reservation (id, member_id, store_id, reservation_date, number_of_people) 
+VALUES (6, 6, 6, '2025-12-26', 4);
+
+INSERT IGNORE INTO reservation (id, member_id, store_id, reservation_date, number_of_people) 
+VALUES (7, 7, 7, '2025-11-18', 3);
+
+INSERT IGNORE INTO reservation (id, member_id, store_id, reservation_date, number_of_people) 
+VALUES (8, 8, 8, '2025-12-27', 2);
+
+INSERT IGNORE INTO reservation (id, member_id, store_id, reservation_date, number_of_people) 
+VALUES (9, 9, 9, '2025-11-19', 5);
+
+INSERT IGNORE INTO reservation (id, member_id, store_id, reservation_date, number_of_people) 
+VALUES (10, 10, 10, '2025-12-28', 3);
