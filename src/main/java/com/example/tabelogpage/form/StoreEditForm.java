@@ -2,8 +2,6 @@ package com.example.tabelogpage.form;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import com.example.tabelogpage.validation.PriceRange;
-
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -12,7 +10,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 
-@PriceRange
+
 @Data
 @AllArgsConstructor 
 public class StoreEditForm {

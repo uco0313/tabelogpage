@@ -59,14 +59,7 @@ public class AdminStoreController {
     } 
     
 
-    @GetMapping("/{id}")
-    public String show(@PathVariable(name = "id") Integer id, Model model) {
-        Store store = storeRepository.getReferenceById(id);
-        
-        model.addAttribute("store", store);
-        
-        return "admin/stores/show";
-    } 
+
     
     @GetMapping("/register")
     public String register(Model model) {
@@ -75,18 +68,35 @@ public class AdminStoreController {
         return "admin/stores/register";
     } 
     
+    
     @PostMapping("/create")
     public String create(@ModelAttribute @Validated StoreRegisterForm storeRegisterForm, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("categoryList", categoryRepository.findAll());
             return "admin/stores/register";
         }
-        
+       
+      // 入力チェック
+       if(storeRegisterForm.getPriceMin() > storeRegisterForm.getPriceMax()) {
+    	    model.addAttribute("categoryList", categoryRepository.findAll());
+    	    model.addAttribute("errorMessage", "価格を適正に入力してください。");
+    	    return "admin/stores/register";
+    	}
+       
         storeService.create(storeRegisterForm);
         redirectAttributes.addFlashAttribute("successMessage", "店舗を登録しました。");    
         
         return "redirect:/admin/stores";
     }  
+    
+    @GetMapping("/{id}")
+    public String show(@PathVariable(name = "id") Integer id, Model model) {
+        Store store = storeRepository.getReferenceById(id);
+        
+        model.addAttribute("store", store);
+        
+        return "admin/stores/show";
+    } 
     
     @GetMapping("/{id}/edit")
     public String edit(@PathVariable(name = "id") Integer id, Model model) {

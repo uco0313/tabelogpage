@@ -8,15 +8,16 @@ INSERT IGNORE INTO categories (id, name) VALUES (4, 'カフェ Cafe');
 INSERT IGNORE INTO categories (id, name) VALUES (5, 'エスニック Ethnic food');
 INSERT IGNORE INTO categories (id, name) VALUES (6, 'その他 Others');
 
+
 -- #################################
 -- 2. members テーブル
 -- #################################
 INSERT IGNORE INTO members (id, name, email, password_hash, postal_code, address, phone_number) 
-VALUES (1, '山田太郎', 'yamada.t@example.com', '$2a$10$XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX', '100-0001', '東京都千代田区', '090-1111-2222');
+VALUES (1, '佐藤 太郎', 'taro.sato@example.com', '$2a$10$2JNjTwZBwo7fprL2X4sv.OEKqxnVtsVQvuXDkI8xVGix.U3W5B7CO', '460-0003', '愛知県名古屋市中区錦1-1-1', '090-1234-5678');
 INSERT IGNORE INTO members (id, name, email, password_hash, postal_code, address, phone_number) 
-VALUES (2, '佐藤花子', 'sato.h@example.com', '$2a$10$YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY', '220-0012', '神奈川県横浜市', '080-3333-4444');
+VALUES (2, '鈴木 花子', 'hanako.suzuki@example.com', '$2a$10$2JNjTwZBwo7fprL2X4sv.OEKqxnVtsVQvuXDkI8xVGix.U3W5B7CO', '450-0002', '愛知県名古屋市中村区名駅4-27-1', '090-1234-5678');
 INSERT IGNORE INTO members (id, name, email, password_hash, postal_code, address, phone_number) 
-VALUES (3, '田中一郎', 'tanaka.i@example.com', '$2a$10$ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ', '530-0001', '大阪府大阪市', '070-5555-6666');
+VALUES (3, '高橋 義勝', 'yoshikatsu.takahashi@example.com', '$2a$10$2JNjTwZBwo7fprL2X4sv.OEKqxnVtsVQvuXDkI8xVGix.U3W5B7CO', '444-0044', '愛知県岡崎市康生通西4-71', '090-1234-5678');
 
 -- #################################
 -- 3. admin テーブル

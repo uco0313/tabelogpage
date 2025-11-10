@@ -39,7 +39,7 @@ footer {
 }
 
 .tabelogpage-logo {
- height: 100px;  
+ height: 60px;  
  
 }
 
@@ -110,6 +110,11 @@ footer {
 .tabelogpage:hover {
   opacity: 0.8;   
 }
+
+.tabelogpage-dropdown-item:active {
+  background-color: #5196a6;
+}
+
 @media screen and (min-width: 1400px) {
  .tabelogpage-container {
    max-width: 1200px;
