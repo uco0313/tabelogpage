@@ -223,43 +223,35 @@ VALUES (2, '鈴木 花子', 'スズキ ハナコ', '450-0002', '愛知県名古�
 
 -- ID 3: 高橋 義勝 (ROLE_GENERAL) - 予約データで使用
 INSERT IGNORE INTO users (id, name, furigana, postal_code, address, phone_number, email, password, role_id, enabled) 
-VALUES (3, '高橋 義勝', 'タカハシ ヨシカツ', '444-0044', '愛知県岡崎市康生通西4-71', '090-1234-5678', 'yoshikatsu.takahashi@example.com', 'password', 1, false);
+VALUES (3, '高橋 義勝', 'タカハシ ヨシカツ', '444-0044', '愛知県岡崎市康生通西4-71', '090-1234-5678', 'yoshikatsu.takahashi@example.com', '$2a$10$2JNjTwZBwo7fprL2X4sv.OEKqxnVtsVQvuXDkI8xVGix.U3W5B7CO', 1, false);
 
--- ID 4: 田中 幸美 (ROLE_GENERAL)
 INSERT IGNORE INTO users (id, name, furigana, postal_code, address, phone_number, email, password, role_id, enabled) 
-VALUES (4, '田中 幸美', 'タナカ サチミ', '440-0897', '愛知県豊橋市松葉町1-11', '090-1234-5678', 'sachimi.tanaka@example.com', 'password', 1, false);
+VALUES (4, '田中 幸美', 'タナカ サチミ', '440-0897', '愛知県豊橋市松葉町1-11', '090-1234-5678', 'sachimi.tanaka@example.com', '$2a$10$2JNjTwZBwo7fprL2X4sv.OEKqxnVtsVQvuXDkI8xVGix.U3W5B7CO', 1, false);
 
--- ID 5: 伊藤 雅 (ROLE_GENERAL)
 INSERT IGNORE INTO users (id, name, furigana, postal_code, address, phone_number, email, password, role_id, enabled) 
-VALUES (5, '伊藤 雅', 'イトウ ミヤビ', '471-0025', '愛知県豊田市西町6-85-1', '090-1234-5678', 'miyabi.ito@example.com', 'password', 1, false);
+VALUES (5, '伊藤 雅', 'イトウ ミヤビ', '471-0025', '愛知県豊田市西町6-85-1', '090-1234-5678', 'miyabi.ito@example.com', '$2a$10$2JNjTwZBwo7fprL2X4sv.OEKqxnVtsVQvuXDkI8xVGix.U3W5B7CO', 1, false);
 
--- ID 6: 渡辺 正保 (ROLE_GENERAL)
 INSERT IGNORE INTO users (id, name, furigana, postal_code, address, phone_number, email, password, role_id, enabled) 
-VALUES (6, '渡辺 正保', 'ワタナベ マサヤス', '491-0858', '愛知県一宮市栄3-1-2', '090-1234-5678', 'masayasu.watanabe@example.com', 'password', 1, false);
+VALUES (6, '渡辺 正保', 'ワタナベ マサヤス', '491-0858', '愛知県一宮市栄3-1-2', '090-1234-5678', 'masayasu.watanabe@example.com', '$2a$10$2JNjTwZBwo7fprL2X4sv.OEKqxnVtsVQvuXDkI8xVGix.U3W5B7CO', 1, false);
 
--- ID 7: 山本 真由美 (ROLE_GENERAL)
 INSERT IGNORE INTO users (id, name, furigana, postal_code, address, phone_number, email, password, role_id, enabled) 
-VALUES (7, '山本 真由美', 'ヤマモト マユミ', '485-0041', '愛知県小牧市中央1-1', '090-1234-5678', 'mayumi.yamamoto@example.com', 'password', 1, false);
+VALUES (7, '山本 真由美', 'ヤマモト マユミ', '485-0041', '愛知県小牧市中央1-1', '090-1234-5678', 'mayumi.yamamoto@example.com', '$2a$10$2JNjTwZBwo7fprL2X4sv.OEKqxnVtsVQvuXDkI8xVGix.U3W5B7CO', 1, false);
 
--- ID 8: 中村 安民 (ROLE_GENERAL)
 INSERT IGNORE INTO users (id, name, furigana, postal_code, address, phone_number, email, password, role_id, enabled) 
-VALUES (8, '中村 安民', 'ナカムラ ヤスタミ', '448-0858', '愛知県刈谷市大手町1-1', '090-1234-5678', 'yasutami.nakamura@example.com', 'password', 1, false);
+VALUES (8, '中村 安民', 'ナカムラ ヤスタミ', '448-0858', '愛知県刈谷市大手町1-1', '090-1234-5678', 'yasutami.nakamura@example.com', '$2a$10$2JNjTwZBwo7fprL2X4sv.OEKqxnVtsVQvuXDkI8xVGix.U3W5B7CO', 1, false);
 
--- ID 9: 小林 章緒 (ROLE_GENERAL)
 INSERT IGNORE INTO users (id, name, furigana, postal_code, address, phone_number, email, password, role_id, enabled) 
-VALUES (9, '小林 章緒', 'コバヤシ アキオ', '446-0032', '愛知県安城市御幸本町1-1', '090-1234-5678', 'akio.kobayashi@example.com', 'password', 1, false);
+VALUES (9, '小林 章緒', 'コバヤシ アキオ', '446-0032', '愛知県安城市御幸本町1-1', '090-1234-5678', 'akio.kobayashi@example.com', '$2a$10$2JNjTwZBwo7fprL2X4sv.OEKqxnVtsVQvuXDkI8xVGix.U3W5B7CO', 1, false);
 
--- ID 10: 加藤 祐子 (ROLE_GENERAL)
 INSERT IGNORE INTO users (id, name, furigana, postal_code, address, phone_number, email, password, role_id, enabled) 
-VALUES (10, '加藤 祐子', 'カトウ ユウコ', '470-2200', '愛知県知多郡阿久比町', '090-1234-5678', 'yuko.kato@example.com', 'password', 1, false);
+VALUES (10, '加藤 祐子', 'カトウ ユウコ', '470-2200', '愛知県知多郡阿久比町', '090-1234-5678', 'yuko.kato@example.com', '$2a$10$2JNjTwZBwo7fprL2X4sv.OEKqxnVtsVQvuXDkI8xVGix.U3W5B7CO', 1, false);
 
--- ID 11: 吉田 秋美 (ROLE_GENERAL)
 INSERT IGNORE INTO users (id, name, furigana, postal_code, address, phone_number, email, password, role_id, enabled) 
-VALUES (11, '吉田 秋美', 'ヨシダ アキミ', '480-1121', '愛知県長久手市山越901', '090-1234-5678', 'akimi.yoshida@example.com', 'password', 1, false);
+VALUES (11, '吉田 秋美', 'ヨシダ アキミ', '480-1121', '愛知県長久手市山越901', '090-1234-5678', 'akimi.yoshida@example.com', '$2a$10$2JNjTwZBwo7fprL2X4sv.OEKqxnVtsVQvuXDkI8xVGix.U3W5B7CO', 1, false);
 
--- ID 12: 山田 信平 (ROLE_GENERAL)
 INSERT IGNORE INTO users (id, name, furigana, postal_code, address, phone_number, email, password, role_id, enabled) 
-VALUES (12, '山田 信平', 'ヤマダ シンペイ', '464-0802', '愛知県名古屋市千種区星ヶ丘元町15', '090-1234-5678', 'shinpei.yamada@example.com', 'password', 1, false);
+VALUES (12, '山田 信平', 'ヤマダ シンペイ', '464-0802', '愛知県名古屋市千種区星ヶ丘元町15', '090-1234-5678', 'shinpei.yamada@example.com', '$2a$10$2JNjTwZBwo7fprL2X4sv.OEKqxnVtsVQvuXDkI8xVGix.U3W5B7CO', 1, false);
+
 
 
 -- #################################
