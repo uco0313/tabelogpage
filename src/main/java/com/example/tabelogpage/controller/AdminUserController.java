@@ -29,7 +29,10 @@ public class AdminUserController {
         Page<User> userPage;
         
         if (keyword != null && !keyword.isEmpty()) {
-            userPage = userRepository.findByNameLikeOrFuriganaLike("%" + keyword + "%", "%" + keyword + "%", pageable);                   
+            String likeKeyword = "%" + keyword + "%";
+            
+            // 氏名、フリガナ、メールアドレスのいずれかにキーワードが部分一致するユーザーを検索
+            userPage = userRepository.findByNameLikeOrFuriganaLikeOrEmailLike(likeKeyword, likeKeyword, likeKeyword, pageable);                   
         } else {
             userPage = userRepository.findAll(pageable);
         }        
@@ -40,6 +43,7 @@ public class AdminUserController {
         return "admin/users/index";
     }
     
+  
     @GetMapping("/{id}")
     public String show(@PathVariable(name = "id") Integer id, Model model) {
         User user = userRepository.getReferenceById(id);

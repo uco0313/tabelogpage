@@ -9,5 +9,8 @@ import com.example.tabelogpage.entity.User;
 
 public interface UserRepository extends JpaRepository<User, Integer> {	
 	public User findByEmail(String email);	
-	public Page<User> findByNameLikeOrFuriganaLike(String nameKeyword, String furiganaKeyword, Pageable pageable);
+	
+    // 氏名、フリガナ、メールアドレスの3つのフィールドで検索するメソッドに置き換える（または追加する）
+	public Page<User> findByNameLikeOrFuriganaLikeOrEmailLike(String nameKeyword, String furiganaKeyword, String emailKeyword, Pageable pageable);
+	
 }
