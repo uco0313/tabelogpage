@@ -114,6 +114,19 @@ footer {
 .tabelogpage-dropdown-item:active {
   background-color: #5196a6;
 }
+/* メニューの縦書きを強制的に解除し横並びにする */
+.navbar-nav.flex-row .nav-item {
+  writing-mode: horizontal-tb !important;
+  display: flex !important;
+  align-items: center;
+}
+.navbar-nav.flex-row .nav-link {
+  writing-mode: horizontal-tb !important;
+  letter-spacing: normal !important;
+  margin-right: 16px;
+  margin-left: 0;
+}
+
 
 @media screen and (min-width: 1400px) {
  .tabelogpage-container {
