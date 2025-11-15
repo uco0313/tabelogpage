@@ -21,7 +21,7 @@ public class WebSecurityConfig {
             .authorizeHttpRequests((requests) -> requests             
                 .requestMatchers(
                     "/css/**", "/images/**", "/js/**", "/storage/**", // 静的リソース
-                    "/", "/signup/**", 
+                    "/", "/signup/**","/stores/**", // すべてのユーザーがアクセス可能
                     // パスワードリセット関連の全てのURLを許可
                     "/passwordreset", "/passwordreset/**", "/login" // loginもpermitAllに入れる
                 ).permitAll()
