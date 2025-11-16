@@ -145,6 +145,9 @@ footer {
   object-fit: cover;
 }
 
+.tabelogpage-sort-box {
+  width: 150px;
+}
 
 @media screen and (min-width: 1400px) {
  .tabelogpage-container {
