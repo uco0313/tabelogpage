@@ -1,5 +1,7 @@
 package com.example.tabelogpage.repository;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -60,4 +62,8 @@ public interface StoreRepository extends JpaRepository<Store, Integer> {
     
     // A, Pmin, Pmax の複合検索
     public Page<Store> findByAddressLikeAndPriceMinGreaterThanEqualAndPriceMaxLessThanEqual(String area, Integer priceMin, Integer priceMax, Pageable pageable);
+
+    //新着順に10件取得するメソッド
+    public List<Store> findTop10ByOrderByCreatedAtDesc();
+
 }

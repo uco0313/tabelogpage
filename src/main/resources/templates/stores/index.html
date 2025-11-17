@@ -171,13 +171,16 @@
 													</p>
 													
 													<div class="d-flex justify-content-between">
-														<p class="card-text">
-															<small class="text-muted" th:text="${'営業時間：' + store.getOpeningTime() + '〜' + store.getClosingTime()}"></small>
-														</p>
-														<p class="card-text">
-															<small class="text-muted" th:text="${'予算：' + '¥' + #numbers.formatInteger(store.getPriceMin(), 1, 'COMMA') + '〜' + '¥' + #numbers.formatInteger(store.getPriceMax(), 1, 'COMMA')}"></small>
-														</p>
-													</div>
+												    <p class="card-text">
+												        <small class="text-muted" th:text="${'営業時間：' + store.getOpeningTime() + '〜' + store.getClosingTime()}"></small>
+												    </p>
+												    <p class="card-text">
+												        <small class="text-muted" th:text="${'定休日：' + store.getRegularHoliday()}"></small>
+												    </p>
+												    <p class="card-text">
+												        <small class="text-muted" th:text="${'予算：' + '¥' + #numbers.formatInteger(store.getPriceMin(), 1, 'COMMA') + '〜' + '¥' + #numbers.formatInteger(store.getPriceMax(), 1, 'COMMA')}"></small>
+												    </p>
+												</div>
 												</div>
 											</div>
 										</div>

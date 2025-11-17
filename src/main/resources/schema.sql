@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS stores (
     price_min INT NOT NULL COMMENT '価格帯(下限)',
     price_max INT NOT NULL COMMENT '価格帯(上限)',
     opening_time TIME NOT NULL COMMENT '営業時間(開店)',
-    closing_time TIME COMMENT '営業時間(閉店)',
+    closing_time TIME NOT NULL COMMENT '営業時間(閉店)',
     postal_code VARCHAR(20) NOT NULL COMMENT '郵便番号',
     address VARCHAR(255) NOT NULL COMMENT '住所',
     phone_number VARCHAR(50) NOT NULL COMMENT '電話番号',
