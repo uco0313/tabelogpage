@@ -35,6 +35,9 @@
                                     <div class="card-body">
                                         <p class="card-text mb-1"><small class="text-muted" th:text="${newStore.getCategory().getName()}"></small></p>
                                         <h3 class="card-title" th:text="${newStore.getStoreName()}"></h3>
+                                        
+                                        <p class="card-text mb-0"><small class="text-muted" th:text="${newStore.getAddress()}"></small></p> 
+                                        
                                         <div>
                                             <p class="card-text mb-0"> <small class="text-muted" th:text="${'営業時間：' + newStore.getOpeningTime() + '〜' + newStore.getClosingTime()}"></small></p>
                                             <p class="card-text mb-0"><small class="text-muted" th:text="${'定休日：' + newStore.getRegularHoliday()}"></small></p>

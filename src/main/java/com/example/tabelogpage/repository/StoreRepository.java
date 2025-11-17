@@ -64,6 +64,6 @@ public interface StoreRepository extends JpaRepository<Store, Integer> {
     public Page<Store> findByAddressLikeAndPriceMinGreaterThanEqualAndPriceMaxLessThanEqual(String area, Integer priceMin, Integer priceMax, Pageable pageable);
 
     //新着順に10件取得するメソッド
-    public List<Store> findTop10ByOrderByCreatedAtDesc();
+    public List<Store> findTop5ByOrderByCreatedAtDesc();
 
 }

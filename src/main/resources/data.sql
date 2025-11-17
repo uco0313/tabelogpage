@@ -31,7 +31,7 @@ VALUES (1, 'admin@example.com', '$2a$10$AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 INSERT IGNORE INTO companies (id, company_name, representative_name, establishment_date, postal_code, address, business_details)
 VALUES (1, 'tabelog株式会社', '代表取締役 北村　美桜', '2010-04-01', '150-0043', '東京都渋谷区道玄坂1-1-1', '飲食店の情報提供サービス事業');
 
--- #################################
+--- #################################
 -- 5. stores テーブル 
 -- #################################
 
@@ -90,7 +90,7 @@ INSERT IGNORE INTO stores (id, category_id, store_name, image_path, description,
 VALUES (18, 2, '地中海レストラン Baro', 'store018.jpg', '魚介類を中心とした地中海料理レストラン。', 5000, 9000, '18:00:00', '23:30:00', '450-0018', '愛知県名古屋市熱田区金山町1-1-1', '052-9876-0013', '水曜日', '2025-02-20 18:40:50', '2025-02-20 18:40:50');
 
 INSERT IGNORE INTO stores (id, category_id, store_name, image_path, description, price_min, price_max, opening_time, closing_time, postal_code, address, phone_number, regular_holiday, created_at, updated_at)
-VALUES (19, 3, '上海小籠包 匠', 'store019.jpg', 'ジューシーな小籠包と点心が人気。', 2500, 4500, '11:00:00', '21:00:00', '450-0019', '愛知県名古屋市昭和区広路町8-8', '052-5555-0014', '木曜日', '2025-11-12 13:55:05', '2025-11-12 13:55:05');
+VALUES (19, 3, '上海小籠包 匠', 'store019.jpg', 'ジューシーな小籠包と点心が人気。', 2500, 4500, '11:00:00', '21:00:00', '450-0019', '愛知県名古屋市昭和区広路町8-8', '052-5555-0014', '木曜日', '2025-10-15 13:55:05', '2025-11-15 13:55:05');
 
 INSERT IGNORE INTO stores (id, category_id, store_name, image_path, description, price_min, price_max, opening_time, closing_time, postal_code, address, phone_number, regular_holiday, created_at, updated_at)
 VALUES (20, 4, '古民家喫茶 コテジ', 'store020.jpg', 'レトロな雰囲気の古民家で静かに過ごせる。', 700, 1300, '10:00:00', '16:00:00', '450-0020', '愛知県名古屋市瑞穂区弥富通1-10', '052-3333-0015', '金曜日', '2025-04-16 10:10:40', '2025-04-16 10:10:40');
@@ -123,7 +123,7 @@ INSERT IGNORE INTO stores (id, category_id, store_name, image_path, description,
 VALUES (29, 1, 'おでん専門店 暖', 'store029.jpg', '冬場に嬉しい、優しい出汁のおでん。', 3000, 5000, '17:00:00', '23:00:00', '450-0029', '愛知県名古屋市瑞穂区高田町1-1-1', '052-1234-0024', '火曜日', '2025-05-27 17:50:35', '2025-05-27 17:50:35');
 
 INSERT IGNORE INTO stores (id, category_id, store_name, image_path, description, price_min, price_max, opening_time, closing_time, postal_code, address, phone_number, regular_holiday, created_at, updated_at)
-VALUES (30, 2, 'ワイン食堂 ソレイユ', 'store030.jpg', '自然派ワインと創作イタリアンが楽しめる。', 4000, 7000, '18:00:00', '00:00:00', '450-0030', '愛知県名古屋市熱田区六野1-1-1', '052-9876-0025', '木曜日', '2025-11-28 14:15:55', '2025-11-28 14:15:55');
+VALUES (30, 2, 'ワイン食堂 ソレイユ', 'store030.jpg', '自然派ワインと創作イタリアンが楽しめる。', 4000, 7000, '18:00:00', '00:00:00', '450-0030', '愛知県名古屋市熱田区六野1-1-1', '052-9876-0025', '木曜日', '2025-10-28 14:15:55', '2025-11-28 14:15:55');
 
 INSERT IGNORE INTO stores (id, category_id, store_name, image_path, description, price_min, price_max, opening_time, closing_time, postal_code, address, phone_number, regular_holiday, created_at, updated_at)
 VALUES (31, 3, '本格中華 百楽', 'store031.jpg', '接待にも使える高級感のある本格中華。', 5000, 10000, '17:00:00', '22:00:00', '450-0031', '愛知県名古屋市中川区八田町4-1-1', '052-5555-0026', '金曜日', '2025-07-20 07:45:10', '2025-07-20 07:45:10');
@@ -132,7 +132,7 @@ INSERT IGNORE INTO stores (id, category_id, store_name, image_path, description,
 VALUES (32, 4, '隠れ家紅茶専門店', 'store032.jpg', '世界中の紅茶と優雅なティータイム。', 1800, 3500, '11:00:00', '18:00:00', '450-0032', '愛知県名古屋市港区入場町1-1-1', '052-3333-0027', '土曜日', '2025-01-19 18:30:45', '2025-01-19 18:30:45');
 
 INSERT IGNORE INTO stores (id, category_id, store_name, image_path, description, price_min, price_max, opening_time, closing_time, postal_code, address, phone_number, regular_holiday, created_at, updated_at)
-VALUES (33, 1, '寿司割烹 粋', 'store033.jpg', '会席料理も楽しめる、落ち着いた雰囲気の寿司割烹。', 12000, 30000, '17:00:00', '21:00:00', '450-0033', '愛知県名古屋市天白区原1-1-1', '052-1111-0028', '月曜日', '2025-09-07 11:55:00', '2025-09-07 11:55:00');
+VALUES (33, 1, '寿司割烹 粋', 'store033.jpg', '会席料理も楽しめる、落ち着いた雰囲気の寿司割烹。', 12000, 30000, '17:00:00', '21:00:00', '450-0033', '愛知県名古屋市天白区原1-1-1', '052-1111-0028', '月曜日', '2025-11-16 17:13:52', '2025-11-16 18:13:52');
 
 INSERT IGNORE INTO stores (id, category_id, store_name, image_path, description, price_min, price_max, opening_time, closing_time, postal_code, address, phone_number, regular_holiday, created_at, updated_at)
 VALUES (34, 2, 'イタリア食堂 マンマ', 'store034.jpg', 'お母さんの味を再現した温かい家庭料理。', 2000, 4000, '11:30:00', '20:00:00', '450-0034', '愛知県名古屋市守山区廿軒家1-1-1', '052-8888-0029', '水曜日', '2025-03-01 16:05:25', '2025-03-01 16:05:25');
@@ -153,25 +153,25 @@ INSERT IGNORE INTO stores (id, category_id, store_name, image_path, description,
 VALUES (39, 3, '薬膳火鍋 健康美', 'store039.jpg', '美容と健康を意識した薬膳スープの火鍋。', 4000, 8000, '17:30:00', '22:30:00', '450-0039', '愛知県名古屋市瑞穂区中山町1-1-1', '052-0000-0034', '月曜日', '2025-02-25 10:55:40', '2025-02-25 10:55:40');
 
 INSERT IGNORE INTO stores (id, category_id, store_name, image_path, description, price_min, price_max, opening_time, closing_time, postal_code, address, phone_number, regular_holiday, created_at, updated_at)
-VALUES (40, 4, 'Smoothie smoothie', 'store040.jpg', '新鮮な野菜と果物を使ったデトックスドリンク。', 700, 1500, '08:30:00', '19:30:00', '450-0040', '愛知県名古屋市熱田区伝馬1-1-1', '052-9999-0035', '水曜日', '2025-11-20 17:10:55', '2025-11-20 17:10:55');
+VALUES (40, 4, 'Smoothie smoothie', 'store040.jpg', '新鮮な野菜と果物を使ったデトックスドリンク。', 700, 1500, '08:30:00', '19:30:00', '450-0040', '愛知県名古屋市熱田区伝馬1-1-1', '052-9999-0035', '水曜日', '2025-10-20 17:10:55', '2025-11-20 17:10:55');
 
 INSERT IGNORE INTO stores (id, category_id, store_name, image_path, description, price_min, price_max, opening_time, closing_time, postal_code, address, phone_number, regular_holiday, created_at, updated_at)
-VALUES (41, 1, '自然派和食 結', 'store041.jpg', '無農薬野菜と出汁にこだわった健康的な定食屋。', 1500, 3000, '11:00:00', '21:00:00', '450-0041', '愛知県名古屋市千種区富士見台1-1-1', '052-1111-1111', '日曜日', '2025-06-15 15:20:10', '2025-06-15 15:20:10');
+VALUES (41, 1, '自然派和食 結', 'store041.jpg', '無農薬野菜と出汁にこだわった健康的な定食屋。', 1500, 3000, '11:00:00', '21:00:00', '450-0041', '愛知県名古屋市千種区富士見台15', '052-1111-1111', '日曜日', '2025-11-15 17:13:51', '2025-11-15 18:13:51');
 
 INSERT IGNORE INTO stores (id, category_id, store_name, image_path, description, price_min, price_max, opening_time, closing_time, postal_code, address, phone_number, regular_holiday, created_at, updated_at)
 VALUES (42, 4, 'オーガニックカフェ muku', 'store042.jpg', '無添加食材にこだわった、体に優しいカフェメニュー。', 1000, 2500, '09:00:00', '19:00:00', '450-0042', '愛知県名古屋市中村区大日町2-2-2', '052-2222-2222', '水曜日', '2025-01-23 09:45:35', '2025-01-23 09:45:35');
 
 INSERT IGNORE INTO stores (id, category_id, store_name, image_path, description, price_min, price_max, opening_time, closing_time, postal_code, address, phone_number, regular_holiday, created_at, updated_at)
-VALUES (43, 3, '本場マーラータン 辛王', 'store043.jpg', 'カスタマイズできる具材が魅力の人気のマーラータン専門店。', 1200, 2800, '11:30:00', '22:00:00', '450-0043', '愛知県名古屋市中区栄3-3-3', '052-3333-3333', '無休', '2025-09-23 14:00:50', '2025-09-23 14:00:50');
+VALUES (43, 3, '本場マーラータン 辛王', 'store043.jpg', 'カスタマイズできる具材が魅力の人気のマーラータン専門店。', 1200, 2800, '11:30:00', '22:00:00', '450-0043', '愛知県名古屋市中区栄3-3-3', '052-3333-3333', '無休', '2025-11-14 17:13:50', '2025-11-14 18:13:50');
 
 INSERT IGNORE INTO stores (id, category_id, store_name, image_path, description, price_min, price_max, opening_time, closing_time, postal_code, address, phone_number, regular_holiday, created_at, updated_at)
-VALUES (44, 4, 'アサイーボウル専門店 Lani', 'store044.jpg', '新鮮なフルーツとアサイーボウル、スムージーを提供。', 800, 1800, '10:00:00', '18:00:00', '450-0044', '愛知県名古屋市中川区山王1-4-4', '052-4444-4444', '火曜日', '2025-03-23 11:05:05', '2025-03-23 11:05:05');
+VALUES (44, 4, 'アサイー専門店 COCO', 'store044.jpg', '新鮮なフルーツとアサイーボウル、スムージーを提供。', 800, 1800, '10:00:00', '18:00:00', '450-0044', '愛知県名古屋市中川区山王1-4-4', '052-4444-4444', '火曜日', '2025-11-13 17:13:49', '2025-11-13 18:13:49');
 
 INSERT IGNORE INTO stores (id, category_id, store_name, image_path, description, price_min, price_max, opening_time, closing_time, postal_code, address, phone_number, regular_holiday, created_at, updated_at)
 VALUES (45, 4, 'タピオカドリンク tappi', 'store045.jpg', '様々なフレーバーのタピオカドリンクが楽しめるスタンド。', 600, 1000, '12:00:00', '20:00:00', '450-0045', '愛知県名古屋市北区黒川本通5-5-5', '052-5555-5555', '月曜日', '2025-10-30 18:25:20', '2025-10-30 18:25:20');
 
 INSERT IGNORE INTO stores (id, category_id, store_name, image_path, description, price_min, price_max, opening_time, closing_time, postal_code, address, phone_number, regular_holiday, created_at, updated_at)
-VALUES (46, 5, 'スパイスカレー ターメリック', 'store046.jpg', '日替わりスパイスカレーと副菜が人気の専門店。', 1200, 2500, '11:00:00', '15:00:00', '450-0046', '愛知県名古屋市昭和区川名本町1-1-1', '052-6666-6666', '火曜日', '2025-04-10 12:15:45', '2025-04-10 12:15:45');
+VALUES (46, 5, 'spice spice', 'store046.jpg', '日替わりスパイスカレーと副菜が人気の専門店。', 1200, 2500, '11:00:00', '15:00:00', '450-0046', '愛知県名古屋市昭和区川名本町11', '052-6666-6666', '火曜日', '2025-11-17 17:13:53', '2025-11-17 18:13:53');
 
 INSERT IGNORE INTO stores (id, category_id, store_name, image_path, description, price_min, price_max, opening_time, closing_time, postal_code, address, phone_number, regular_holiday, created_at, updated_at)
 VALUES (47, 5, 'インドスパイスの王様', 'store047.jpg', '南インド風の本格的なミールスを提供するカレー屋。', 1500, 3000, '11:30:00', '21:30:00', '450-0047', '愛知県名古屋市西区上小田井2-2-2', '052-7777-7777', '月曜日', '2025-08-01 07:50:00', '2025-08-01 07:50:00');
@@ -183,7 +183,8 @@ INSERT IGNORE INTO stores (id, category_id, store_name, image_path, description,
 VALUES (49, 5, 'カレーと酒場 ナマステ', 'store049.jpg', '夜は多国籍な一品料理とクラフトビールも楽しめる。', 1000, 4000, '17:00:00', '23:00:00', '450-0049', '愛知県名古屋市中区錦1-5-5', '052-9999-9999', '日曜日', '2025-02-10 19:00:30', '2025-02-10 19:00:30');
 
 INSERT IGNORE INTO stores (id, category_id, store_name, image_path, description, price_min, price_max, opening_time, closing_time, postal_code, address, phone_number, regular_holiday, created_at, updated_at)
-VALUES (50, 5, 'マイルドカレー こぐま', 'store050.jpg', '子どもから大人まで楽しめる辛さ控えめの優しいカレー。', 900, 1800, '11:00:00', '19:00:00', '450-0050', '愛知県名古屋市瑞穂区弥富ヶ丘5-6-7', '052-1234-9876', '木曜日', '2025-11-16 13:35:40', '2025-11-16 13:35:40');
+VALUES (50, 5, 'マイルドカレー こぐま', 'store050.jpg', '子どもから大人まで楽しめる辛さ控えめの優しいカレー。', 900, 1800, '11:00:00', '19:00:00', '450-0050', '愛知県名古屋市瑞穂区弥富ヶ丘5-6-7', '052-1234-9876', '木曜日', '2025-10-16 13:35:40', '2025-11-16 13:35:40');
+
 -- #################################
 -- 6. review テーブル
 -- #################################
