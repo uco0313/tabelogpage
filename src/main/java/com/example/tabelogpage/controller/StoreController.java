@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.tabelogpage.entity.Store;
+import com.example.tabelogpage.form.ReservationInputForm;
 import com.example.tabelogpage.repository.CategoryRepository;
 import com.example.tabelogpage.repository.StoreRepository;
 
@@ -160,6 +161,7 @@ public class StoreController {
         Store store = storeRepository.getReferenceById(id);
         
         model.addAttribute("store", store);         
+        model.addAttribute("reservationInputForm", new ReservationInputForm());
         
         return "stores/show";
     }    

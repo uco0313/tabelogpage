@@ -216,7 +216,7 @@ VALUES (2, 'ROLE_ADMIN');
 
 -- ID 1: 佐藤 太郎 (ROLE_GENERAL) - レビューデータで使用
 INSERT IGNORE INTO users (id, name, furigana, postal_code, address, phone_number, email, password, role_id, enabled) 
-VALUES (1, '佐藤 太郎', 'サトウ タロウ', '460-0003', '愛知県名古屋市中区錦1-1-1', '090-1234-5678', 'taro.sato@example.com', '$2a$10$2JNjTwZBwo7fprL2X4sv.OEKqxnVtsVQvuXDkI8xVGix.U3W5B7CO', 1, true);
+	VALUES (1, '佐藤 太郎', 'サトウ タロウ', '460-0003', '愛知県名古屋市中区錦1-1-1', '090-1234-5678', 'taro.sato@example.com', '$2a$10$2JNjTwZBwo7fprL2X4sv.OEKqxnVtsVQvuXDkI8xVGix.U3W5B7CO', 1, true);
 
 -- ID 2: 鈴木 花子 (ROLE_ADMIN) - レビューと予約データで使用
 INSERT IGNORE INTO users (id, name, furigana, postal_code, address, phone_number, email, password, role_id, enabled) 
@@ -259,33 +259,51 @@ VALUES (12, '山田 信平', 'ヤマダ シンペイ', '464-0802', '愛知県名
 -- 9. reservation テーブル
 -- #################################
 
--- 予約済みデータ 
-INSERT IGNORE INTO reservation (id, member_id, store_id, reservation_date, number_of_people)
-VALUES (1, 1, 1, '2025-11-15', 2);
+-- #################################
+-- 9. reservation テーブル (日時入り)
+-- #################################
 
-INSERT IGNORE INTO reservation (id, member_id, store_id, reservation_date, number_of_people)
-VALUES (2, 2, 2, '2025-12-24', 4);
+-- store_idと対応する予約時間 (店舗ID: 開店時間 -> 予約時間)
+-- 1: 17:00:00 -> 19:30:00
+INSERT IGNORE INTO reservations (id, user_id, store_id, reservation_date, number_of_people)
+VALUES (1, 1, 1, '2025-12-15 19:30:00', 2);
 
-INSERT IGNORE INTO reservation (id, member_id, store_id, reservation_date, number_of_people) 
-VALUES (3, 3, 3, '2025-11-16', 3);
+-- 2: 18:00:00 -> 20:00:00
+INSERT IGNORE INTO reservations (id, user_id, store_id, reservation_date, number_of_people)
+VALUES (2, 1, 2, '2025-12-24 20:00:00', 4);
 
-INSERT IGNORE INTO reservation (id, member_id, store_id, reservation_date, number_of_people) 
-VALUES (4, 4, 4, '2025-12-25', 5);
+-- 3: 11:30:00 -> 18:30:00
+INSERT IGNORE INTO reservations (id, user_id, store_id, reservation_date, number_of_people) 
+VALUES (3, 1, 3, '2025-12-16 18:30:00', 3);
 
-INSERT IGNORE INTO reservation (id, member_id, store_id, reservation_date, number_of_people) 
-VALUES (5, 5, 5, '2025-11-17', 2);
+-- 4: 09:00:00 -> 11:00:00 
+INSERT IGNORE INTO reservations (id, user_id, store_id, reservation_date, number_of_people) 
+VALUES (4, 1, 4, '2025-12-25 11:00:00', 5);
 
-INSERT IGNORE INTO reservation (id, member_id, store_id, reservation_date, number_of_people) 
-VALUES (6, 6, 6, '2025-12-26', 4);
+-- 5: 11:00:00 -> 19:00:00
+INSERT IGNORE INTO reservations (id, user_id, store_id, reservation_date, number_of_people) 
+VALUES (5, 1, 5, '2025-12-17 19:00:00', 2);
 
-INSERT IGNORE INTO reservation (id, member_id, store_id, reservation_date, number_of_people) 
-VALUES (7, 7, 7, '2025-11-18', 3);
+-- 6: 17:30:00 -> 19:30:00
+INSERT IGNORE INTO reservations (id, user_id, store_id, reservation_date, number_of_people) 
+VALUES (6, 1, 6, '2025-12-26 19:30:00', 4);
 
-INSERT IGNORE INTO reservation (id, member_id, store_id, reservation_date, number_of_people) 
-VALUES (8, 8, 8, '2025-12-27', 2);
+-- 7: 11:00:00 -> 13:00:00 
+INSERT IGNORE INTO reservations (id, user_id, store_id, reservation_date, number_of_people) 
+VALUES (7, 1, 7, '2025-12-18 13:00:00', 3);
 
-INSERT IGNORE INTO reservation (id, member_id, store_id, reservation_date, number_of_people) 
-VALUES (9, 9, 9, '2025-11-19', 5);
+-- 8: 08:00:00 -> 09:30:00 
+INSERT IGNORE INTO reservations (id, user_id, store_id, reservation_date, number_of_people) 
+VALUES (8, 1, 8, '2025-12-27 09:30:00', 2);
 
-INSERT IGNORE INTO reservation (id, member_id, store_id, reservation_date, number_of_people) 
-VALUES (10, 10, 10, '2025-12-28', 3);
+-- 9: 17:00:00 -> 20:00:00
+INSERT IGNORE INTO reservations (id, user_id, store_id, reservation_date, number_of_people) 
+VALUES (9, 1, 9, '2025-12-19 20:00:00', 5);
+
+-- 10: 17:00:00 -> 19:00:00
+INSERT IGNORE INTO reservations (id, user_id, store_id, reservation_date, number_of_people) 
+VALUES (10, 1, 10, '2025-12-28 19:00:00', 3);
+
+-- 10: 17:00:00 -> 19:00:00
+INSERT IGNORE INTO reservations (id, user_id, store_id, reservation_date, number_of_people) 
+VALUES (11, 1, 11, '2025-12-30 17:30:00', 3);
