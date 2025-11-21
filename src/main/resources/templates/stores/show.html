@@ -116,6 +116,16 @@
                                                <span th:text="${store.regularHoliday}"></span>
                                            </div>
                                        </div>
+                                       
+                                       <div class="row pb-2 mb-2 border-bottom">
+                                           <div class="col-4">
+                                               <span class="fw-bold">定員</span>
+                                           </div>
+                                           <div class="col">
+                                               <span th:text="${store.capacity} + '名'"></span>
+                                           </div>
+                                       </div>
+                                       
                                        </div>
                                    
                                    <div sec:authorize="isAnonymous()" class="col-lg-4 px-0 ps-lg-4 mb-4">                  
@@ -130,7 +140,7 @@
                                    <div sec:authorize="isAuthenticated()" class="col-lg-4 px-0 ps-lg-4 mb-4">                  
                                        <div class="card">
                                            <div class="card-body">
-                                               <form method="post" th:action="@{/reservations/create}" th:object="${reservationInputForm}">
+                                               <form method="post" th:action="@{/stores/__${store.id}__/reservations/input}" th:object="${reservationInputForm}">
                                                    
                                                    <div class="mb-3">
                                                        <label for="reservation-datetime" class="form-label fw-bold">予約日時</label>
@@ -170,10 +180,9 @@
        <div th:replace="~{fragment :: scripts}"></div> 
        
        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-       
        <script src="https://npmcdn.com/flatpickr/dist/l10n/ja.js"></script>
        
-       <script th:src="@{/js/flatpickr.js}"></script> 
+       <script th:src="@{/js/flatpickr.js(v=6)}"></script> 
        
  </body>
 </html>

@@ -22,7 +22,7 @@ public class Store {
     @Column(name = "id")
     private Integer id; 
 
-  
+    
     @ManyToOne 
     @JoinColumn(name = "category_id") // 外部キー（storesテーブルのカラム名）を指定
     private Category category; 
@@ -60,6 +60,9 @@ public class Store {
     
     @Column(name = "regular_holiday")
     private String regularHoliday; 
+    
+    @Column(name = "capacity")
+    private Integer capacity;
 
     @Column(name = "created_at", insertable = false, updatable = false)
     private Timestamp createdAt; 
