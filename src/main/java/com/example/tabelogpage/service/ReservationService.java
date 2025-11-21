@@ -6,6 +6,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.tabelogpage.entity.Reservation;
 import com.example.tabelogpage.entity.Store;
@@ -14,6 +15,7 @@ import com.example.tabelogpage.form.ReservationRegisterForm;
 import com.example.tabelogpage.repository.ReservationRepository;
 import com.example.tabelogpage.repository.StoreRepository;
 import com.example.tabelogpage.repository.UserRepository;
+
 
 
 @Service
@@ -106,6 +108,7 @@ public class ReservationService {
      * 予約データを登録します。
      * @param reservationRegisterForm 登録フォーム
      */
+    @Transactional
     public void create(ReservationRegisterForm reservationRegisterForm) {
         Reservation reservation = new Reservation();
         
@@ -120,12 +123,21 @@ public class ReservationService {
         reservation.setStore(store);
         reservation.setUser(user);
         
-        // 【✨修正完了: setReservationDate に修正しました✨】
         reservation.setReservationDate(reservationDateTime); 
         
         reservation.setNumberOfPeople(reservationRegisterForm.getNumberOfPeople());
         
         // データベースに保存
         reservationRepository.save(reservation);
+    }
+    
+    /**
+     * 指定されたIDの予約を削除します。（キャンセル機能）
+     * @param id 予約ID
+     */
+    @Transactional // ⭐ 追加: 予約の削除処理
+    public void delete(Integer id) {
+        // IDを指定してデータベースから予約を削除
+        reservationRepository.deleteById(id);
     }
 }

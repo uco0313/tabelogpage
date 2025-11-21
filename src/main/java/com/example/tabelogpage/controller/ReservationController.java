@@ -158,4 +158,17 @@ public class ReservationController {
         return "redirect:/reservations?reserved";
     }
     
+    @PostMapping("/reservations/{id}/delete")
+    public String delete(@PathVariable(name = "id") Integer id, RedirectAttributes redirectAttributes) {
+        
+        // サービス層の削除メソッドを呼び出す
+        reservationService.delete(id);
+        
+        // キャンセル完了メッセージを設定
+        redirectAttributes.addFlashAttribute("flashMessage", "予約をキャンセルしました。");
+        
+        // 予約一覧画面へリダイレクト
+        return "redirect:/reservations";
+    }
+    
 }

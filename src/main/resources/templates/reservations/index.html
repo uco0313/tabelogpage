@@ -24,9 +24,13 @@
                            
                            <h1 class="mb-3 text-center">予約一覧</h1>  
            
-                            <div th:if="${param.reserved}" class="alert alert-success" role="alert">
+                            <div th:if="${param.reserved}" class="alert alert-success mt-3" role="alert">
                                 <span>予約が完了しました。</span>
                            </div>   
+                           
+                            <div th:if="${flashMessage}" class="alert alert-success" role="alert">
+                                <span th:text="${flashMessage}"></span>
+                           </div> 
                            
                            <table class="table">
                                <thead>
@@ -34,8 +38,8 @@
                                        <th scope="col">店舗名</th>
                                        <th scope="col">予約日時</th>
                                        <th scope="col">予約人数</th>
-                                       <th scope="col">予約日</th>                                   
-                                   </tr>
+                                       <th scope="col">予約日</th>    
+                                       <th scope="col">予約キャンセル</th> </tr>
                                </thead>   
                                <tbody>                                                    
                                    <tr th:each="reservation : ${reservationPage.content}">
@@ -45,6 +49,13 @@
                                        <td th:text="${#temporals.format(reservation.reservationDate, 'yyyy/MM/dd HH:mm')}"></td>
                                        <td th:text="${reservation.getNumberOfPeople + '名'}"></td>
                                        <td th:text="${#dates.format(reservation.createdAt, 'yyyy/MM/dd')}"></td>
+                                       
+                                       <td>
+                                           <form th:action="@{/reservations/__${reservation.id}__/delete}" method="post">
+                                               <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('本当にこの予約をキャンセルしてもよろしいですか？')">キャンセル</button>
+                                           </form>
+                                       </td>
+                                       
                                    </tr>                              
                                  </tbody>
                            </table>    
