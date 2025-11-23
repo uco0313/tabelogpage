@@ -159,8 +159,16 @@ footer {
   object-fit: cover;
 }
 
-.samuraitravel-search-form {
+.tabelogpage-search-form {
     max-width: 300px;
+}
+
+.tabelogpage-star {
+  color: #ffa500;
+} 
+
+.tabelogpage-star:focus {
+  color: #ffa500;
 }
 
 

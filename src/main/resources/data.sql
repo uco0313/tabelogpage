@@ -1,3 +1,20 @@
+-- 外部キー制約を一時的に無効化
+SET FOREIGN_KEY_CHECKS = 0; 
+
+-- 各テーブルのAUTO_INCREMENTの現在値をリセット
+-- (この処理は、データ挿入時にIDがずれるのを防ぐために重要です)
+ALTER TABLE admin AUTO_INCREMENT = 1;
+ALTER TABLE categories AUTO_INCREMENT = 1;
+ALTER TABLE companies AUTO_INCREMENT = 1;
+ALTER TABLE members AUTO_INCREMENT = 1;
+ALTER TABLE roles AUTO_INCREMENT = 1;
+ALTER TABLE users AUTO_INCREMENT = 1;
+ALTER TABLE verification_tokens AUTO_INCREMENT = 1;
+ALTER TABLE password_reset_tokens AUTO_INCREMENT = 1;
+ALTER TABLE stores AUTO_INCREMENT = 1;
+ALTER TABLE reservations AUTO_INCREMENT = 1;
+ALTER TABLE reviews AUTO_INCREMENT = 1;
+
 -- #################################
 -- 1. categories テーブル
 -- #################################
@@ -29,7 +46,7 @@ VALUES (1, 'admin@example.com', '$2a$10$AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 -- 4. companies テーブル
 -- #################################
 INSERT IGNORE INTO companies (id, company_name, representative_name, establishment_date, postal_code, address, business_details)
-VALUES (1, 'tabelog株式会社', '代表取締役 北村　美桜', '2010-04-01', '150-0043', '東京都渋谷区道玄坂1-1-1', '飲食店の情報提供サービス事業');
+VALUES (1, 'NAGOYAMESHI株式会社', '代表取締役 北村　美桜', '2010-04-01', '150-0043', '東京都渋谷区道玄坂1-1-1', '飲食店の情報提供サービス事業');
 
 
 --- #################################
@@ -185,21 +202,147 @@ VALUES (49, 5, 'カレーと酒場 ナマステ', 'store049.jpg', '夜は多国�
 
 INSERT IGNORE INTO stores (id, category_id, store_name, image_path, description, price_min, price_max, opening_time, closing_time, postal_code, address, phone_number, regular_holiday, capacity, created_at, updated_at)
 VALUES (50, 5, 'マイルドカレー こぐま', 'store050.jpg', '子どもから大人まで楽しめる辛さ控えめの優しいカレー。', 900, 1800, '11:00:00', '19:00:00', '450-0050', '愛知県名古屋市瑞穂区弥富ヶ丘5-6-7', '052-1234-9876', '木曜日', 18, '2025-10-16 13:35:40', '2025-11-16 13:35:40');
+
 -- #################################
--- 6. review テーブル
+-- 6. reviews テーブル
 -- #################################
 
 -- ID 1 (佐藤太郎)が銀座 匠の寿司（store_id=1）にレビュー
-INSERT IGNORE INTO review (id, member_id, store_id, star_rating, comment)
+INSERT IGNORE INTO reviews (id, user_id, store_id, star_rating, comment)
 VALUES (1, 1, 1, 5, '人生で一番美味しい寿司でした！');
 
+INSERT IGNORE INTO reviews (id, user_id, store_id, star_rating, comment)
+VALUES (31, 2, 1, 5, '最高！');
+
+INSERT IGNORE INTO reviews (id, user_id, store_id, star_rating, comment)
+VALUES (32, 3, 1, 5, '再訪！！');
+
+INSERT IGNORE INTO reviews (id, user_id, store_id, star_rating, comment)
+VALUES (33, 4, 1, 5, '新鮮です');
+
+INSERT IGNORE INTO reviews (id, user_id, store_id, star_rating, comment)
+VALUES (34, 5, 1, 5, 'おいしい～');
+
+INSERT IGNORE INTO reviews (id, user_id, store_id, star_rating, comment)
+VALUES (35, 6, 1, 5, 'お酒が進みます');
+
+INSERT IGNORE INTO reviews (id, user_id, store_id, star_rating, comment)
+VALUES (36, 7, 1, 4, 'また来たいです');
+
+INSERT IGNORE INTO reviews (id, user_id, store_id, star_rating, comment)
+VALUES (37, 8, 1, 5, '牡蠣がおすすめです');
+
+INSERT IGNORE INTO reviews (id, user_id, store_id, star_rating, comment)
+VALUES (38, 9, 1, 5, 'お通しがおいしい');
+
+INSERT IGNORE INTO reviews (id, user_id, store_id, star_rating, comment)
+VALUES (39, 10, 1, 4, '予約必須');
+
+INSERT IGNORE INTO reviews (id, user_id, store_id, star_rating, comment)
+VALUES (40, 11, 1, 4, '日替わりメニューがあります');
+
+
+
+
+
 -- ID 2 (鈴木花子)がトラットリア・リッコ（store_id=2）にレビュー
-INSERT IGNORE INTO review (id, member_id, store_id, star_rating, comment)
+INSERT IGNORE INTO reviews (id, user_id, store_id, star_rating, comment)
 VALUES (2, 2, 2, 4, 'パスタが絶品！ワインも豊富でまた来たいです。');
 
 -- ID 1 (佐藤太郎)が中華料理 龍鳳（store_id=3）にレビュー
-INSERT IGNORE INTO review (id, member_id, store_id, star_rating, comment)
+INSERT IGNORE INTO reviews (id, user_id, store_id, star_rating, comment)
 VALUES (3, 1, 3, 3, '担々麺が美味しかったです。辛党にお勧め！');
+
+-- カフェ (ID: 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 42, 44, 45)
+INSERT IGNORE INTO reviews (id, user_id, store_id, star_rating, comment)
+VALUES (4, 2, 4, 5, '静かで居心地が良い最高のカフェです。読書が進みました。'); -- Book Cafe moumou (ID: 4)
+INSERT IGNORE INTO reviews (id, user_id, store_id, star_rating, comment)
+VALUES (5, 3, 8, 4, '自家焙煎のコーヒーの香りが最高でした。焼き菓子も美味しい。'); -- COFFEEEEEE (ID: 8)
+
+-- イタリアン (ID: 6, 10, 14)
+INSERT IGNORE INTO reviews (id, user_id, store_id, star_rating, comment)
+VALUES (6, 1, 6, 5, 'ナポリピッツァは耳まで美味しく、まさに本場の味！'); -- ピッツェリア・ロー二 (ID: 6)
+INSERT IGNORE INTO reviews (id, user_id, store_id, star_rating, comment)
+VALUES (7, 4, 10, 5, '夜景が綺麗で、デートにぴったりでした。'); -- リストランテ 月と星 (ID: 10)
+
+-- 寿司/和食 (ID: 5, 9, 13)
+INSERT IGNORE INTO reviews (id, user_id, store_id, star_rating, comment)
+VALUES (8, 2, 5, 4, 'ランチの海鮮丼が新鮮でボリューム満点。コスパが良い！'); -- 名駅前 海鮮問屋 (ID: 5)
+INSERT IGNORE INTO reviews (id, user_id, store_id, star_rating, comment)
+VALUES (9, 3, 9, 3, '居酒屋メニューが豊富で、団体でワイワイ楽しめました。'); -- 寿司居酒屋 大漁 (ID: 9)
+
+-- 中華 (ID: 7, 11, 15)
+INSERT IGNORE INTO reviews (id, user_id, store_id, star_rating, comment)
+VALUES (10, 1, 7, 4, '広東料理はあっさりしていて、子供も食べやすかったです。'); -- 広東飯店 口福 (ID: 7)
+INSERT IGNORE INTO reviews (id, user_id, store_id, star_rating, comment)
+VALUES (11, 4, 15, 5, '名物の激辛麻婆豆腐は想像以上の辛さ！中毒性があります。'); -- 四川麻婆 炎 (ID: 15)
+
+-- カフェ
+INSERT IGNORE INTO reviews (id, user_id, store_id, star_rating, comment)
+VALUES (12, 2, 12, 5, '抹茶の苦味が絶妙で、和菓子との組み合わせが最高でした。'); -- 抹茶と甘味処 nagi (ID: 12)
+INSERT IGNORE INTO reviews (id, user_id, store_id, star_rating, comment)
+VALUES (13, 1, 16, 4, 'テラス席が開放的で気持ちよく、ブランチがおしゃれでした。'); -- terrace moon (ID: 16)
+
+-- 寿司/和食
+INSERT IGNORE INTO reviews (id, user_id, store_id, star_rating, comment)
+VALUES (14, 3, 17, 5, '揚げたての天ぷらはサクサクで、素材の味がしっかり生きていました。'); -- 高級天ぷら 葵 (ID: 17)
+
+-- イタリアン
+INSERT IGNORE INTO reviews (id, user_id, store_id, star_rating, comment)
+VALUES (15, 2, 18, 4, '魚介が新鮮で、地中海料理の味付けがとても良かったです。'); -- 地中海レストラン Baro (ID: 18)
+
+-- 中華
+INSERT IGNORE INTO reviews (id, user_id, store_id, star_rating, comment)
+VALUES (16, 1, 19, 5, '小籠包から肉汁が溢れて、とてもジューシーでした。'); -- 上海小籠包 匠 (ID: 19)
+
+-- カフェ
+INSERT IGNORE INTO reviews (id, user_id, store_id, star_rating, comment)
+VALUES (17, 4, 20, 3, 'レトロな雰囲気が素敵でしたが、少し狭いのが残念。'); -- 古民家喫茶 コテジ (ID: 20)
+INSERT IGNORE INTO reviews (id, user_id, store_id, star_rating, comment)
+VALUES (18, 3, 24, 5, 'パンケーキはふわふわで、見た目も可愛くて満足！'); -- pancake tabetai (ID: 24)
+
+-- 寿司/和食
+INSERT IGNORE INTO reviews (id, user_id, store_id, star_rating, comment)
+VALUES (19, 1, 21, 5, 'ひつまぶしは絶品！薬味と出汁で3度楽しめました。'); -- うなぎ処 蓬来軒 (ID: 21)
+
+-- イタリアン
+INSERT IGNORE INTO reviews (id, user_id, store_id, star_rating, comment)
+VALUES (20, 2, 22, 4, 'ワインの種類が豊富で、陽気な雰囲気で楽しめました。'); -- トラットリア フォルテ (ID: 22)
+INSERT IGNORE INTO reviews (id, user_id, store_id, star_rating, comment)
+VALUES (21, 4, 26, 3, 'タパスは美味しかったけど、少しお酒の種類が少なかったです。'); -- イタリアンバル (ID: 26)
+
+-- 中華
+INSERT IGNORE INTO reviews (id, user_id, store_id, star_rating, comment)
+VALUES (22, 1, 27, 4, '台湾ラーメンの辛さが病みつきになります。汗だくで完食！'); -- 台湾ラーメン 味仙 (ID: 27)
+
+-- 寿司/和食
+INSERT IGNORE INTO reviews (id, user_id, store_id, star_rating, comment)
+VALUES (23, 3, 29, 5, 'おでんの出汁が優しくて、寒い日に体が温まりました。'); -- おでん専門店 暖 (ID: 29)
+INSERT IGNORE INTO reviews (id, user_id, store_id, star_rating, comment)
+VALUES (24, 2, 33, 5, '高級感があり、お寿司も会席も全てが素晴らしかったです。'); -- 寿司割烹 粋 (ID: 33)
+
+-- イタリアン
+INSERT IGNORE INTO reviews (id, user_id, store_id, star_rating, comment)
+VALUES (25, 1, 34, 4, '家庭的な味で、ほっとするイタリアンでした。'); -- イタリア食堂 マンマ (ID: 34)
+
+-- 中華
+INSERT IGNORE INTO reviews (id, user_id, store_id, star_rating, comment)
+VALUES (26, 4, 35, 4, '中華粥は優しく、朝食にぴったりでした。'); -- 中華粥 優 (ID: 35)
+
+-- カフェ
+INSERT IGNORE INTO reviews (id, user_id, store_id, star_rating, comment)
+VALUES (27, 2, 36, 5, 'レトロな内装が可愛く、写真映えするカフェでした。'); -- カフェ レトロ レトロ (ID: 36)
+
+-- カレー (ID: 46, 47, 48, 49, 50)
+INSERT IGNORE INTO reviews (id, user_id, store_id, star_rating, comment)
+VALUES (28, 1, 46, 5, '日替わりカレーのスパイスが効いていて最高！'); -- spice spice (ID: 46)
+INSERT IGNORE INTO reviews (id, user_id, store_id, star_rating, comment)
+VALUES (29, 3, 48, 4, '欧風カレーのルーが濃厚で、とても食べ応えがありました。'); -- 欧風カレーといえば、ここ。 (ID: 48)
+
+-- 寿司/和食
+INSERT IGNORE INTO reviews (id, user_id, store_id, star_rating, comment)
+VALUES (30, 4, 37, 4, '焼鳥と日本酒の相性が抜群で、落ち着いて飲めました。'); -- 焼鳥と日本酒 鶏次郎 (ID: 37)
+
 
 -- #################################
 -- 7. roles テーブル
@@ -255,9 +398,6 @@ VALUES (12, '山田 信平', 'ヤマダ シンペイ', '464-0802', '愛知県名
 
 
 
--- #################################
--- 9. reservation テーブル
--- #################################
 
 -- #################################
 -- 9. reservation テーブル (日時入り)

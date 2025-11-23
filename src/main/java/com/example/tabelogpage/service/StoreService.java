@@ -6,8 +6,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.time.LocalTime;
+import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -30,6 +34,92 @@ public class StoreService {
         this.storeRepository = storeRepository;
         this.categoryRepository = categoryRepository;
     }
+    
+	public Optional<Store> findStoreById(Integer id) {
+        return storeRepository.findById(id); 
+    }
+    
+    public List<Category> findAllCategories() {
+        return categoryRepository.findAll();
+    }
+    
+   
+     //検索条件に基づいて店舗を検索します。
+    
+    public Page<Store> findByCriteria(String keyword, String address, Integer priceMin, Integer priceMax, Integer categoryId, Pageable pageable) {
+        
+        Page<Store> storePage;
+
+        // 検索条件フラグ
+        boolean hasKeyword = (keyword != null && !keyword.isEmpty());
+        boolean hasAddress = (address != null && !address.isEmpty());
+        boolean hasPriceMin = (priceMin != null);
+        boolean hasPriceMax = (priceMax != null);
+        boolean hasCategory = (categoryId != null);
+        
+        // クエリ用パラメータ
+        String keywordForQuery = hasKeyword ? "%" + keyword + "%" : null;
+        // ★修正: areaForQuery を addressForQuery に変更
+        String addressForQuery = hasAddress ? "%" + address + "%" : null;
+        
+        
+        if (hasKeyword) {
+            // 【キーワード単独検索】
+            storePage = storeRepository.findByStoreNameLikeOrAddressLike(keywordForQuery, keywordForQuery, pageable);
+            
+        } else {
+            // 【複合検索】: キーワードが存在しない場合、C, A, Pmin, Pmax の複合検索を実行
+
+            if (hasCategory) {
+                // --- カテゴリIDがある場合の複合検索ロジック（K キーワードなし） ---
+                
+                if (hasAddress && hasPriceMin && hasPriceMax) {
+                    storePage = storeRepository.findByAddressLikeAndPriceMinGreaterThanEqualAndPriceMaxLessThanEqualAndCategoryId(
+                        addressForQuery, priceMin, priceMax, categoryId, pageable);
+                } else if (hasAddress && hasPriceMin) {
+                    storePage = storeRepository.findByAddressLikeAndPriceMinGreaterThanEqualAndCategoryId(addressForQuery, priceMin, categoryId, pageable);
+                } else if (hasAddress && hasPriceMax) {
+                    storePage = storeRepository.findByAddressLikeAndPriceMaxLessThanEqualAndCategoryId(addressForQuery, priceMax, categoryId, pageable);
+                } else if (hasPriceMin && hasPriceMax) {
+                    storePage = storeRepository.findByPriceMinGreaterThanEqualAndPriceMaxLessThanEqualAndCategoryId(priceMin, priceMax, categoryId, pageable);
+                } else if (hasAddress) {
+                    storePage = storeRepository.findByAddressLikeAndCategoryId(addressForQuery, categoryId, pageable);
+                } else if (hasPriceMax) {
+                    storePage = storeRepository.findByPriceMaxLessThanEqualAndCategoryId(priceMax, categoryId, pageable);
+                } else if (hasPriceMin) {
+                    storePage = storeRepository.findByPriceMinGreaterThanEqualAndCategoryId(priceMin, categoryId, pageable);
+                } else {
+                    storePage = storeRepository.findByCategoryId(categoryId, pageable);
+                }
+                
+            } else {
+                // --- カテゴリIDがない場合の複合検索ロジック（K　キーワードなし） ---
+
+                // ★修正: hasArea と areaForQuery を address に置き換え
+                if (hasAddress && hasPriceMin && hasPriceMax) {
+                    storePage = storeRepository.findByAddressLikeAndPriceMinGreaterThanEqualAndPriceMaxLessThanEqual(
+                        addressForQuery, priceMin, priceMax, pageable);
+                } else if (hasAddress && hasPriceMin) {
+                    storePage = storeRepository.findByAddressLikeAndPriceMinGreaterThanEqual(addressForQuery, priceMin, pageable);
+                } else if (hasAddress && hasPriceMax) {
+                    storePage = storeRepository.findByAddressLikeAndPriceMaxLessThanEqual(addressForQuery, priceMax, pageable);
+                } else if (hasPriceMin && hasPriceMax) {
+                    storePage = storeRepository.findByPriceMinGreaterThanEqualAndPriceMaxLessThanEqual(priceMin, priceMax, pageable);
+                } else if (hasAddress) {
+                    storePage = storeRepository.findByAddressLike(addressForQuery, pageable);
+                } else if (hasPriceMax) {
+                    storePage = storeRepository.findByPriceMaxLessThanEqual(priceMax, pageable);
+                } else if (hasPriceMin) {
+                    storePage = storeRepository.findByPriceMinGreaterThanEqual(priceMin, pageable);
+                } else {
+                    storePage = storeRepository.findAll(pageable);
+                }
+            }
+        }
+        
+        return storePage;
+    }
+		
     
     
     public void create(StoreRegisterForm storeRegisterForm) { 
@@ -103,13 +193,17 @@ public class StoreService {
     }    
     
     public String generateNewFileName(String fileName) {
-        String[] fileNames = fileName.split("\\.");             
-        for (int i = 0; i < fileNames.length - 1; i++) {
-            fileNames[i] = UUID.randomUUID().toString();            
-        }
-        String hashedFileName = String.join(".", fileNames);
+        // 1. 最後のドットの位置を見つけます
+        int lastDotIndex = fileName.lastIndexOf(".");
+        
+        // 2. 拡張子を取得します (ドットがない場合は空文字列)
+        String extension = (lastDotIndex == -1) ? "" : fileName.substring(lastDotIndex);
+        
+        // 3. UUIDで生成した一意な文字列と拡張子を結合します
+        String hashedFileName = UUID.randomUUID().toString() + extension;
+        
         return hashedFileName;
-    }       
+    } 
     
     
     public void copyImageFile(MultipartFile imageFile, Path filePath) {           
