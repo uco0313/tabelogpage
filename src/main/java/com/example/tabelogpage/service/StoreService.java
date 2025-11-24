@@ -29,7 +29,7 @@ public class StoreService {
     private final StoreRepository storeRepository;
     private final CategoryRepository categoryRepository; 
     
-  
+    // コンストラクタ
     public StoreService(StoreRepository storeRepository, CategoryRepository categoryRepository) {
         this.storeRepository = storeRepository;
         this.categoryRepository = categoryRepository;
@@ -46,21 +46,20 @@ public class StoreService {
    
      //検索条件に基づいて店舗を検索します。
     
-    public Page<Store> findByCriteria(String keyword, String address, Integer priceMin, Integer priceMax, Integer categoryId, Pageable pageable) {
+    public Page<Store> findByCriteria(String keyword, String area, Integer priceMin, Integer priceMax, Integer categoryId, Pageable pageable) {
         
         Page<Store> storePage;
 
         // 検索条件フラグ
         boolean hasKeyword = (keyword != null && !keyword.isEmpty());
-        boolean hasAddress = (address != null && !address.isEmpty());
+        boolean hasArea = (area != null && !area.isEmpty());
         boolean hasPriceMin = (priceMin != null);
         boolean hasPriceMax = (priceMax != null);
         boolean hasCategory = (categoryId != null);
         
         // クエリ用パラメータ
         String keywordForQuery = hasKeyword ? "%" + keyword + "%" : null;
-        // ★修正: areaForQuery を addressForQuery に変更
-        String addressForQuery = hasAddress ? "%" + address + "%" : null;
+        String areaForQuery = hasArea ? "%" + area + "%" : null;
         
         
         if (hasKeyword) {
@@ -73,17 +72,17 @@ public class StoreService {
             if (hasCategory) {
                 // --- カテゴリIDがある場合の複合検索ロジック（K キーワードなし） ---
                 
-                if (hasAddress && hasPriceMin && hasPriceMax) {
+                if (hasArea && hasPriceMin && hasPriceMax) {
                     storePage = storeRepository.findByAddressLikeAndPriceMinGreaterThanEqualAndPriceMaxLessThanEqualAndCategoryId(
-                        addressForQuery, priceMin, priceMax, categoryId, pageable);
-                } else if (hasAddress && hasPriceMin) {
-                    storePage = storeRepository.findByAddressLikeAndPriceMinGreaterThanEqualAndCategoryId(addressForQuery, priceMin, categoryId, pageable);
-                } else if (hasAddress && hasPriceMax) {
-                    storePage = storeRepository.findByAddressLikeAndPriceMaxLessThanEqualAndCategoryId(addressForQuery, priceMax, categoryId, pageable);
+                        areaForQuery, priceMin, priceMax, categoryId, pageable);
+                } else if (hasArea  && hasPriceMin) {
+                    storePage = storeRepository.findByAddressLikeAndPriceMinGreaterThanEqualAndCategoryId(areaForQuery, priceMin, categoryId, pageable);
+                } else if (hasArea  && hasPriceMax) {
+                    storePage = storeRepository.findByAddressLikeAndPriceMaxLessThanEqualAndCategoryId(areaForQuery, priceMax, categoryId, pageable);
                 } else if (hasPriceMin && hasPriceMax) {
                     storePage = storeRepository.findByPriceMinGreaterThanEqualAndPriceMaxLessThanEqualAndCategoryId(priceMin, priceMax, categoryId, pageable);
-                } else if (hasAddress) {
-                    storePage = storeRepository.findByAddressLikeAndCategoryId(addressForQuery, categoryId, pageable);
+                } else if (hasArea ) {
+                    storePage = storeRepository.findByAddressLikeAndCategoryId(areaForQuery, categoryId, pageable);
                 } else if (hasPriceMax) {
                     storePage = storeRepository.findByPriceMaxLessThanEqualAndCategoryId(priceMax, categoryId, pageable);
                 } else if (hasPriceMin) {
@@ -95,18 +94,17 @@ public class StoreService {
             } else {
                 // --- カテゴリIDがない場合の複合検索ロジック（K　キーワードなし） ---
 
-                // ★修正: hasArea と areaForQuery を address に置き換え
-                if (hasAddress && hasPriceMin && hasPriceMax) {
+                if (hasArea  && hasPriceMin && hasPriceMax) {
                     storePage = storeRepository.findByAddressLikeAndPriceMinGreaterThanEqualAndPriceMaxLessThanEqual(
-                        addressForQuery, priceMin, priceMax, pageable);
-                } else if (hasAddress && hasPriceMin) {
-                    storePage = storeRepository.findByAddressLikeAndPriceMinGreaterThanEqual(addressForQuery, priceMin, pageable);
-                } else if (hasAddress && hasPriceMax) {
-                    storePage = storeRepository.findByAddressLikeAndPriceMaxLessThanEqual(addressForQuery, priceMax, pageable);
+                        areaForQuery, priceMin, priceMax, pageable);
+                } else if (hasArea  && hasPriceMin) {
+                    storePage = storeRepository.findByAddressLikeAndPriceMinGreaterThanEqual(areaForQuery, priceMin, pageable);
+                } else if (hasArea  && hasPriceMax) {
+                    storePage = storeRepository.findByAddressLikeAndPriceMaxLessThanEqual(areaForQuery, priceMax, pageable);
                 } else if (hasPriceMin && hasPriceMax) {
                     storePage = storeRepository.findByPriceMinGreaterThanEqualAndPriceMaxLessThanEqual(priceMin, priceMax, pageable);
-                } else if (hasAddress) {
-                    storePage = storeRepository.findByAddressLike(addressForQuery, pageable);
+                } else if (hasArea ) {
+                    storePage = storeRepository.findByAddressLike(areaForQuery, pageable);
                 } else if (hasPriceMax) {
                     storePage = storeRepository.findByPriceMaxLessThanEqual(priceMax, pageable);
                 } else if (hasPriceMin) {
@@ -120,6 +118,16 @@ public class StoreService {
         return storePage;
     }
 		
+    
+    /**
+     * CSV出力のために、すべての店舗情報（List形式）を取得します。
+     */
+    @Transactional(readOnly = true) // 読み取り専用トランザクション
+    public List<Store> findAllStoresList() {
+        // JpaRepositoryが提供するfindAll()を使用して全件取得
+        return storeRepository.findAll();
+    }
+    // ------------------------------------------
     
     
     public void create(StoreRegisterForm storeRegisterForm) { 

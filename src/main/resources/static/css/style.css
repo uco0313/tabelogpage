@@ -171,6 +171,9 @@ footer {
   color: #ffa500;
 }
 
+.login-button {
+    color: white !important; 
+}
 
 @media screen and (min-width: 1400px) {
  .tabelogpage-container {

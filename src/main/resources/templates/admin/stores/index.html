@@ -19,15 +19,22 @@
                            <h1 class="mb-4 text-center">店舗一覧</h1>   
                            
                             <div class="d-flex justify-content-between align-items-end flex-wrap">
-                                <form method="get" th:action="@{/admin/stores}" class="mb-3">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" name="keyword" th:value="${keyword}" placeholder="店舗名">
-                                        <button type="submit" class="btn text-white shadow-sm tabelogpage-btn">検索</button> 
-                                    </div>               
-                                </form>                                  
-                                <a th:href="@{/admin/stores/register}" class="btn text-white shadow-sm mb-3 tabelogpage-btn">登録</a>   
-                           </div>                                                          
-                           
+			    <form method="get" th:action="@{/admin/stores}" class="mb-3">
+			        <div class="input-group">
+			            <input type="text" class="form-control" name="keyword" th:value="${keyword}" placeholder="店舗名">
+			            <button type="submit" class="btn text-white shadow-sm tabelogpage-btn">検索</button> 
+			        </div>               
+			    </form>
+			    
+			    <!-- CSVダウンロードボタンと登録ボタンを横並びにするブロック -->
+			    <div class="d-flex gap-2 mb-3">
+			        <!-- CSVダウンロードリンク -->
+			        <a th:href="@{/admin/stores/export/csv}" class="btn btn-success text-white shadow-sm">CSVダウンロード</a>
+			        <!-- 既存の登録ボタン -->
+			        <a th:href="@{/admin/stores/register}" class="btn text-white shadow-sm tabelogpage-btn">登録</a>   
+			    </div>
+			</div>                                                 
+			                           
                            <div th:if="${successMessage}" class="alert alert-info">
                                 <span th:text="${successMessage}"></span>
                             </div>         

@@ -26,31 +26,22 @@ INSERT IGNORE INTO categories (id, name) VALUES (5, 'エスニック Ethnic food
 INSERT IGNORE INTO categories (id, name) VALUES (6, 'その他 Others');
 
 
--- #################################
--- 2. members テーブル
--- #################################
-INSERT IGNORE INTO members (id, name, email, password_hash, postal_code, address, phone_number) 
-VALUES (1, '佐藤 太郎', 'taro.sato@example.com', '$2a$10$2JNjTwZBwo7fprL2X4sv.OEKqxnVtsVQvuXDkI8xVGix.U3W5B7CO', '460-0003', '愛知県名古屋市中区錦1-1-1', '090-1234-5678');
-INSERT IGNORE INTO members (id, name, email, password_hash, postal_code, address, phone_number) 
-VALUES (2, '鈴木 花子', 'hanako.suzuki@example.com', '$2a$10$2JNjTwZBwo7fprL2X4sv.OEKqxnVtsVQvuXDkI8xVGix.U3W5B7CO', '450-0002', '愛知県名古屋市中村区名駅4-27-1', '090-1234-5678');
-INSERT IGNORE INTO members (id, name, email, password_hash, postal_code, address, phone_number) 
-VALUES (3, '高橋 義勝', 'yoshikatsu.takahashi@example.com', '$2a$10$2JNjTwZBwo7fprL2X4sv.OEKqxnVtsVQvuXDkI8xVGix.U3W5B7CO', '444-0044', '愛知県岡崎市康生通西4-71', '090-1234-5678');
 
 -- #################################
--- 3. admin テーブル
+-- 2. admin テーブル
 -- #################################
 INSERT IGNORE INTO admin (id, email, password_hash) 
 VALUES (1, 'admin@example.com', '$2a$10$AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
 
 -- #################################
--- 4. companies テーブル
+-- 3. companies テーブル
 -- #################################
 INSERT IGNORE INTO companies (id, company_name, representative_name, establishment_date, postal_code, address, business_details)
 VALUES (1, 'NAGOYAMESHI株式会社', '代表取締役 北村　美桜', '2010-04-01', '150-0043', '東京都渋谷区道玄坂1-1-1', '飲食店の情報提供サービス事業');
 
 
 --- #################################
--- 5. stores テーブル 
+-- 4. stores テーブル 
 -- #################################
 
 INSERT IGNORE INTO stores (id, category_id, store_name, image_path, description, price_min, price_max, opening_time, closing_time, postal_code, address, phone_number, regular_holiday, capacity, created_at, updated_at)
@@ -204,7 +195,7 @@ INSERT IGNORE INTO stores (id, category_id, store_name, image_path, description,
 VALUES (50, 5, 'マイルドカレー こぐま', 'store050.jpg', '子どもから大人まで楽しめる辛さ控えめの優しいカレー。', 900, 1800, '11:00:00', '19:00:00', '450-0050', '愛知県名古屋市瑞穂区弥富ヶ丘5-6-7', '052-1234-9876', '木曜日', 18, '2025-10-16 13:35:40', '2025-11-16 13:35:40');
 
 -- #################################
--- 6. reviews テーブル
+-- 5. reviews テーブル
 -- #################################
 
 -- ID 1 (佐藤太郎)が銀座 匠の寿司（store_id=1）にレビュー
@@ -345,7 +336,7 @@ VALUES (30, 4, 37, 4, '焼鳥と日本酒の相性が抜群で、落ち着いて
 
 
 -- #################################
--- 7. roles テーブル
+-- 6. roles テーブル
 -- #################################
 INSERT IGNORE INTO roles (id, name) 
 VALUES (1, 'ROLE_GENERAL');
@@ -354,7 +345,7 @@ INSERT IGNORE INTO roles (id, name)
 VALUES (2, 'ROLE_ADMIN');
 
 -- #################################
--- 8. users テーブル
+-- 7. users テーブル
 -- #################################
 
 -- ID 1: 佐藤 太郎 (ROLE_GENERAL) - レビューデータで使用
@@ -400,7 +391,7 @@ VALUES (12, '山田 信平', 'ヤマダ シンペイ', '464-0802', '愛知県名
 
 
 -- #################################
--- 9. reservation テーブル (日時入り)
+-- 8. reservation テーブル (日時入り)
 -- #################################
 
 -- store_idと対応する予約時間 (店舗ID: 開店時間 -> 予約時間)
@@ -447,3 +438,20 @@ VALUES (10, 1, 10, '2025-12-28 19:00:00', 3);
 -- 10: 17:00:00 -> 19:00:00
 INSERT IGNORE INTO reservations (id, user_id, store_id, reservation_date, number_of_people) 
 VALUES (11, 1, 11, '2025-12-30 17:30:00', 3);
+
+
+-- #################################
+-- 9. favoritesテーブル
+-- #################################
+INSERT IGNORE INTO favorites (id, store_id, user_id) VALUES (1, 1, 1);
+INSERT IGNORE INTO favorites (id, store_id, user_id) VALUES (2, 2, 1);
+INSERT IGNORE INTO favorites (id, store_id, user_id) VALUES (3, 3, 1);
+INSERT IGNORE INTO favorites (id, store_id, user_id) VALUES (4, 4, 1);
+INSERT IGNORE INTO favorites (id, store_id, user_id) VALUES (5, 5, 1);
+INSERT IGNORE INTO favorites (id, store_id, user_id) VALUES (6, 6, 1);
+INSERT IGNORE INTO favorites (id, store_id, user_id) VALUES (7, 7, 1);
+INSERT IGNORE INTO favorites (id, store_id, user_id) VALUES (8, 8, 1);
+INSERT IGNORE INTO favorites (id, store_id, user_id) VALUES (9, 9, 1);
+INSERT IGNORE INTO favorites (id, store_id, user_id) VALUES (10, 10, 1);
+INSERT IGNORE INTO favorites (id, store_id, user_id) VALUES (11, 11, 1);
+INSERT IGNORE INTO favorites (id, store_id, user_id) VALUES (12, 12, 1);

@@ -21,7 +21,7 @@ import lombok.ToString;
 @Entity
 @Table(name = "stores")
 @Data
-@ToString(exclude = {"reservations", "reviews"})
+@ToString(exclude = {"reservations", "reviews", "favorites"})
 public class Store {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -81,4 +81,7 @@ public class Store {
     
     @OneToMany(mappedBy = "store", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private List<Review> reviews;
+    
+    @OneToMany(mappedBy = "store", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    private List<Favorite> favorites;    
 }

@@ -17,11 +17,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.example.tabelogpage.entity.Favorite;
 import com.example.tabelogpage.entity.Review;
 import com.example.tabelogpage.entity.Store;
 import com.example.tabelogpage.entity.User;
 import com.example.tabelogpage.form.ReservationInputForm;
 import com.example.tabelogpage.security.UserDetailsImpl;
+import com.example.tabelogpage.service.FavoriteService;
 import com.example.tabelogpage.service.ReviewService;
 import com.example.tabelogpage.service.StoreService;
 
@@ -30,18 +32,20 @@ import com.example.tabelogpage.service.StoreService;
 public class StoreController {
     private final StoreService storeService;
     private final ReviewService reviewService;
+    private final FavoriteService favoriteService;  
     
    
-    public StoreController(StoreService storeService ,ReviewService reviewService) {
+    public StoreController(StoreService storeService ,ReviewService reviewService,FavoriteService favoriteService) {
         this.storeService = storeService;
         this.reviewService = reviewService;
+        this.favoriteService = favoriteService;
     }
     
     @GetMapping
     public String index(Model model, 
                         @PageableDefault(page = 0, size = 10, sort = "id", direction = Direction.ASC) Pageable pageable,
                         @RequestParam(name = "keyword", required = false) String keyword,
-                        @RequestParam(name = "address", required = false) String address,
+                        @RequestParam(name = "area", required = false) String area,
                         @RequestParam(name = "priceMin", required = false) Integer priceMin,
                         @RequestParam(name = "priceMax", required = false) Integer priceMax,
                         @RequestParam(name = "categoryId", required = false) Integer categoryId,
@@ -69,12 +73,12 @@ public class StoreController {
         // --- 2. 複合検索ロジック (Service層へ委譲) ---
         
         // ★修正: すべての検索ロジックをStoreServiceのfindByCriteriaメソッドに委譲
-        storePage = storeService.findByCriteria(keyword, address, priceMin, priceMax, categoryId, pageable);
+        storePage = storeService.findByCriteria(keyword, area, priceMin, priceMax, categoryId, pageable);
         
         if (hasKeyword) {
             // キーワード検索時は他の検索パラメータをリセット（ビューに渡す値のため、Controllerに残す）
             categoryId = null;
-            address = null;
+            area = null;
             priceMin = null;
             priceMax = null;
         }
@@ -89,7 +93,7 @@ public class StoreController {
         
         // 検索条件をビューに渡す 
         model.addAttribute("keyword", keyword);
-        model.addAttribute("address", address);
+        model.addAttribute("area", area);
         model.addAttribute("priceMin", priceMin);
         model.addAttribute("priceMax", priceMax);
         model.addAttribute("categoryId", categoryId);
@@ -115,10 +119,17 @@ public class StoreController {
 
         Store store = optionalStore.get();        
         boolean hasUserAlreadyReviewed = false; 
+        Favorite favorite = null;        
+        boolean isFavorite = false;
         
         if (userDetailsImpl != null) {
             User user = userDetailsImpl.getUser();
-            hasUserAlreadyReviewed = reviewService.hasUserAlreadyReviewed(store, user);           
+            hasUserAlreadyReviewed = reviewService.hasUserAlreadyReviewed(store, user);  
+            isFavorite = favoriteService.isFavorite(store, user);
+            
+            if (isFavorite) {
+                favorite = favoriteService.findFavoriteByStoreAndUser(store, user);
+            }  
         }  
         
         List<Review> newReviews = reviewService.findTop6ReviewsByStoreOrderByCreatedAtDesc(store);        
@@ -130,6 +141,8 @@ public class StoreController {
         model.addAttribute("hasUserAlreadyReviewed", hasUserAlreadyReviewed);
         model.addAttribute("newReviews", newReviews);        
         model.addAttribute("totalReviewCount", totalReviewCount);   
+        model.addAttribute("favorite", favorite);
+        model.addAttribute("isFavorite", isFavorite);
         
         return "stores/show";
     }    

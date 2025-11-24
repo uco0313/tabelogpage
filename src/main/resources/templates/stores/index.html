@@ -166,8 +166,8 @@
 													<p class="card-text mb-2">
 														<span th:text="${store.getDescription()}"></span>
 													</p>
-													<p class="card-text mb-2">
-														<small class="text-muted" th:text="${'〒' + store.getPostalCode() + ' ' + store.getAddress()}"></small>
+													<p class="card-text mb-2 d-flexjustify-content-between"> <small class="text-muted me-4" th:text="${'〒' + store.getPostalCode() + ' ' + store.getAddress()}"></small>
+													    <small class="text-muted" th:text="${'TEL ' + store.getPhoneNumber()}"></small>
 													</p>
 													
 													<div class="d-flex justify-content-between">
@@ -176,6 +176,9 @@
 												    </p>
 												    <p class="card-text">
 												        <small class="text-muted" th:text="${'定休日：' + store.getRegularHoliday()}"></small>
+												    </p>
+												    <p class="card-text">
+												        <small class="text-muted" th:text="${'定員：' + store.getCapacity()+ ' 名' }"></small>
 												    </p>
 												    <p class="card-text">
 												        <small class="text-muted" th:text="${'予算：' + '¥' + #numbers.formatInteger(store.getPriceMin(), 1, 'COMMA') + '〜' + '¥' + #numbers.formatInteger(store.getPriceMax(), 1, 'COMMA')}"></small>

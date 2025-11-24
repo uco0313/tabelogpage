@@ -156,4 +156,13 @@ CREATE TABLE IF NOT EXISTS reviews (
     FOREIGN KEY (store_id) REFERENCES stores (id)
 );
 
-
+CREATE TABLE IF NOT EXISTS favorites (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    store_id INT NOT NULL,
+    user_id INT NOT NULL,
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    UNIQUE (store_id, user_id),
+    FOREIGN KEY (store_id) REFERENCES stores (id),
+    FOREIGN KEY (user_id) REFERENCES users (id)
+);
