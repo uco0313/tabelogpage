@@ -6,8 +6,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.5.7</version>
-		<relativePath/> <!-- lookup parent from repository -->
-	</parent>
+		<relativePath/> </parent>
 	<groupId>com.example</groupId>
 	<artifactId>tabelogpage</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
@@ -85,6 +84,12 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+        
+        <dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-csv</artifactId>
+			<version>1.10.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -92,7 +97,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.11.0</version>
+				<version>3.14.1</version>
 				<configuration>
 					<release>${java.version}</release>
 					<annotationProcessorPaths>
@@ -117,5 +122,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
