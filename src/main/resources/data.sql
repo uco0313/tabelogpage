@@ -37,7 +37,7 @@ VALUES (1, 'admin@example.com', '$2a$10$AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 -- 3. companies テーブル
 -- #################################
 INSERT IGNORE INTO companies (id, company_name, representative_name, establishment_date, postal_code, address, business_details)
-VALUES (1, 'NAGOYAMESHI株式会社', '代表取締役 北村　美桜', '2010-04-01', '150-0043', '東京都渋谷区道玄坂1-1-1', '飲食店の情報提供サービス事業');
+VALUES (1, 'NAGOYAMESHI株式会社', '代表取締役 北村　美桜', '2010-04-01', '150-0043', '愛知県名古屋市中村区1-1-1 NAGOYAMESHI TOWER 1101', '飲食店の情報提供サービス事業');
 
 
 --- #################################
@@ -193,6 +193,14 @@ VALUES (49, 5, 'カレーと酒場 ナマステ', 'store049.jpg', '夜は多国�
 
 INSERT IGNORE INTO stores (id, category_id, store_name, image_path, description, price_min, price_max, opening_time, closing_time, postal_code, address, phone_number, regular_holiday, capacity, created_at, updated_at)
 VALUES (50, 5, 'マイルドカレー こぐま', 'store050.jpg', '子どもから大人まで楽しめる辛さ控えめの優しいカレー。', 900, 1800, '11:00:00', '19:00:00', '450-0050', '愛知県名古屋市瑞穂区弥富ヶ丘5-6-7', '052-1234-9876', '木曜日', 18, '2025-10-16 13:35:40', '2025-11-16 13:35:40');
+
+INSERT IGNORE INTO stores (id, category_id, store_name, image_path, description, price_min, price_max, opening_time, closing_time, postal_code, address, phone_number, regular_holiday, capacity, created_at, updated_at)
+VALUES (51, 6, 'hamburger is .', 'store051.jpg', '自家製バンズ。チーズバーガーが1番人気。', 1000, 2000, '11:00:00', '19:00:00', '450-0051', '愛知県名古屋市東区希望ヶ丘58', '052-1234-9878', '木曜日', 30, '2025-10-17 13:40:40', '2025-11-16 13:35:40');
+
+INSERT IGNORE INTO stores (id, category_id, store_name, image_path, description, price_min, price_max, opening_time, closing_time, postal_code, address, phone_number, regular_holiday, capacity, created_at, updated_at)
+VALUES (52, 6, 'My name is TACOS.', 'store052.jpg', '本格メキシカン！名古屋上陸。', 2000, 5000, '17:00:00', '23:00:00', '450-0052', '愛知県名古屋市中村区ひばりヶ丘58', '052-1234-8878', '火曜日', 20, '2025-10-18 13:40:40', '2025-11-16 14:35:40');
+
+
 
 -- #################################
 -- 5. reviews テーブル

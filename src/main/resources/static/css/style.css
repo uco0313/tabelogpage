@@ -175,6 +175,86 @@ footer {
     color: white !important; 
 }
 
+/* ====================================
+   会社概要ページ用スタイル
+   ==================================== */
+
+/* コンテナ全体の最大幅と中央寄せ */
+.tabelogpage-container.company-page {
+    max-width: 800px; /* 適度な最大幅を設定 */
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 40px; /* 上部の余白を調整 */
+    padding-bottom: 40px; /* 下部の余白を調整 */
+}
+
+/* ページタイトル */
+.tabelogpage-container.company-page h2 {
+    text-align: center; /* タイトルを中央寄せ */
+    font-size: 2.2rem;
+    color: #333;
+    margin-bottom: 40px; /* タイトル下の余白を増やす */
+    position: relative;
+    padding-bottom: 10px;
+}
+
+/* タイトルの下線（装飾） */
+.tabelogpage-container.company-page h2::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    width: 60px; /* 下線の幅 */
+    height: 3px;
+    background-color: #6c757d; /* 下線の色 */
+    border-radius: 2px;
+}
+
+
+/* テーブルの全体的な調整 */
+.company-page .table.table-bordered {
+    border: none; /* Bootstrapのデフォルト枠線を削除 */
+    border-collapse: collapse; /* セル間の隙間をなくす */
+    width: 100%;
+    margin-bottom: 0;
+    font-size: 1.0rem;
+}
+
+/* テーブルヘッダー (th) のスタイル */
+.company-page .table.table-bordered th {
+    background-color: #f8f9fa; /* ヘッダー背景色 */
+    color: #495057; /* ヘッダー文字色 */
+    font-weight: 500; /* フォントの太さ */
+    border: 1px solid #dee2e6; /* 軽い枠線 */
+    vertical-align: middle; /* 垂直方向中央寄せ */
+    padding: 15px 20px; /* パディング */
+    text-align: left; /* 左寄せ */
+}
+
+/* テーブルデータ (td) のスタイル */
+.company-page .table.table-bordered td {
+    background-color: #ffffff; /* データ背景色 */
+    color: #343a40; /* データ文字色 */
+    border: 1px solid #dee2e6; /* 軽い枠線 */
+    vertical-align: middle; /* 垂直方向中央寄せ */
+    padding: 15px 20px; /* パディング */
+    line-height: 1.6; /* 行の高さ */
+}
+
+/* テーブルの枠線を丸くする */
+.company-page .bg-white.p-4.shadow-sm.rounded {
+    border-radius: 10px !important; /* 角を丸くする */
+    overflow: hidden; /* 角丸を適用するために必要 */
+    border: 1px solid #e9ecef; /* 外枠線を追加 */
+}
+
+/* テーブルのセルのホバーエフェクト（任意） */
+.company-page .table.table-bordered tbody tr:hover td {
+    background-color: #f2f2f2; /* ホバー時の背景色 */
+    transition: background-color 0.2s ease-in-out;
+}
+
 @media screen and (min-width: 1400px) {
  .tabelogpage-container {
    max-width: 1200px;
